@@ -128,3 +128,8 @@ def split_data(images, labels, RANDOM_STATE=0):
         random_state=RANDOM_STATE)
 
     return [train_images, train_labels], [test_images, test_labels]
+
+
+def process_imgage_from_api(image_dir):
+
+    return
