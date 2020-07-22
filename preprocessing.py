@@ -130,6 +130,28 @@ def split_data(images, labels, RANDOM_STATE=0):
     return [train_images, train_labels], [test_images, test_labels]
 
 
-def process_imgage_from_api(image_dir):
+def stack_exp_v2(image_arr, num_exp=3):
+    """To reshape image array [[width, height, 3] * 3] to [[width, height, 9]]
+    """
+    new_image_arr = np.zeros(
+        [int(image_arr.shape[0]/num_exp), image_arr.shape[1], image_arr.shape[2], num_exp*3])
+    j = 0
+    for i in range(int(image_arr.shape[0]/num_exp)):
+        k = 0
+        for exp in range(num_exp):
+            new_image_arr[i, :, :, k:k+3] = image_arr[j, :, :, :]
+            k += 3
+            j += 1
+    return new_image_arr
 
-    return
+
+def ann_preprocess_v2(annot_arr, num_exp=3):
+    """Only the first annotation is taken from the the annot_arr
+    """
+    new_annot_arr = np.zeros(
+        [int(annot_arr.shape[0]/3), annot_arr.shape[1], annot_arr.shape[2], annot_arr.shape[3]])
+    j = 0
+    for i in range(int(annot_arr.shape[0]/num_exp)):
+        new_annot_arr[i, :, :, :] = annot_arr[j, :, :, :]
+        j += num_exp
+    return new_annot_arr

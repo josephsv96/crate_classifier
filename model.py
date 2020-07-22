@@ -5,7 +5,7 @@ from tensorflow.keras import Model
 from tensorflow.keras.layers import Input
 # from tensorflow.keras.layers import add, Activation, Reshape, UpSampling2D
 # Conv2DTranspose
-from tensorflow.keras.layers import Conv2D, LeakyReLU
+from tensorflow.keras.layers import Conv2D, LeakyReLU, Softmax
 # Softmax
 from tensorflow.keras.layers import BatchNormalization
 # average, concatenate
@@ -72,9 +72,10 @@ def cnn_def(input_layer, num_layer, num_classes):
     x = Conv2D(num_classes, (1, 1), strides=(1, 1), padding='same',
                name='DetectionLayer', use_bias=False)(x)
 
-    output_layer = x
+    # output = Reshape((grid_h, grid_w, num_classes))(x)
+    output = x
 
-    return output_layer
+    return output
 
 
 def cnn_def_2(input_layer, num_layer, num_classes):
@@ -116,6 +117,23 @@ def cnn_def_2(input_layer, num_layer, num_classes):
 
     stack_3_out = x
 
+    # output_2
+    x = Conv2D(7, (1, 1), strides=(1, 1), padding='same',
+               name='conv_'+str(num_layer), use_bias=False)(stack_3_out)
+    x = BatchNormalization(name='norm_' + str(num_layer))(x)
+    num_layer += 1
+
+    # Final Activation
+    x = LeakyReLU(alpha=0.1)(x)
+    # x = Softmax()(x)
+
+    # Output Detection layer
+    x = Conv2D(1, (1, 1), strides=(1, 1), padding='same',
+               name='isCrate', use_bias=False)(x)
+
+    output_layer_2 = x
+    # END of output 2
+
     # output_1
     # stack 4, does not reduce extends
 
@@ -129,26 +147,10 @@ def cnn_def_2(input_layer, num_layer, num_classes):
 
     # Output Detection layer
     x = Conv2D(num_classes, (1, 1), strides=(1, 1),
-               padding='same', name='category', use_bias=False)(x)
+               padding='same', name='class', use_bias=False)(x)
 
     output_layer_1 = x
     # END of output 1
-
-    # output_2
-    x = Conv2D(7, (1, 1), strides=(1, 1), padding='same',
-               name='conv_'+str(num_layer), use_bias=False)(stack_3_out)
-    x = BatchNormalization(name='norm_' + str(num_layer))(x)
-    num_layer += 1
-
-    # Final Activation
-    x = LeakyReLU(alpha=0.1)(x)
-
-    # Output Detection layer
-    x = Conv2D(1, (1, 1), strides=(1, 1), padding='same',
-               name='isCrate', use_bias=False)(x)
-
-    output_layer_2 = x
-    # END of output 2
 
     print("stack 4")
     # END of Model defenition
@@ -183,7 +185,7 @@ def make_model(img_shape, num_classes, num_exposures=1, loss_func='CatCross'):
     return input_layer, model
 
 
-def make_model_2(img_shape, num_classes, num_exposures=1, init_lr=1e-2, epochs=100):
+def make_model_2(img_shape, num_classes, num_exposures=1, init_lr=1e-3, epochs=100):
     height = img_shape[0]
     width = img_shape[1]
     input_layer = Input(shape=(height, width, 3*num_exposures))
@@ -197,10 +199,10 @@ def make_model_2(img_shape, num_classes, num_exposures=1, init_lr=1e-2, epochs=1
                   name='cnn_model')
 
     # Compiling the model
-    losses = {"category": "categorical_crossentropy",
-              "isCrate": "binary_crossentropy"}
+    losses = {"isCrate": "binary_crossentropy",
+              "class": "categorical_crossentropy"}
 
-    lossWeights = {"category": 1.0, "isCrate": 1.0}
+    lossWeights = {"isCrate": 1.0, "class": 1.0}
     # initialize the optimizer and compile the model
 
     opt = Adam(lr=init_lr, decay=init_lr / epochs)

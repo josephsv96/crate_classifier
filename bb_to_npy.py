@@ -12,7 +12,7 @@ def bb_to_npy(img_file, label):
     annot = np.zeros([height, width])
     # print(annot.shape)
     for box in label:
-        box_class = box[2]
+        box_class = box[0]
 
         box_x = box[1] * width
         box_y = box[2] * height
@@ -38,7 +38,7 @@ def main():
     label_dir = Path(
         "C:/Users/josep/Documents/work/labelling_tools/OpenLabeling/main/output/YOLO_darknet")
     output_dir = Path(
-        "C:/Users/josep/Documents/work/crate_classifier/dataset/data_2/dataset/crate_1_annot")
+        "C:/Users/josep/Documents/work/crate_classifier/dataset/data_1/annots")
 
     label_arr = load_txt(label_dir)
     bmp_files = sort_path(list(image_dir.glob('**/*.bmp')))
