@@ -26,7 +26,7 @@ class CrateNet:
         num_layer = 0
 
         # stack 1, no reduction
-        x = Conv2D(14, (3, 3), strides=(1, 1), padding='same',
+        x = Conv2D(32, (5, 5), strides=(1, 1), padding='same',
                    name='conv_' + str(num_layer), use_bias=False)(input_layer)
         x = BatchNormalization(name='norm_' + str(num_layer))(x)
         x = LeakyReLU(alpha=0.1)(x)
@@ -37,8 +37,8 @@ class CrateNet:
 
         # stack 2, does not reduce extends but enlarges the area of influence
         # for each convolution mask
-        for i in range(0, 7):
-            x = Conv2D(14, (3, 3), strides=(1, 1), padding='same',
+        for i in range(0, 48):
+            x = Conv2D(8, (3, 3), strides=(1, 1), padding='same',
                        name='conv_' + str(num_layer), use_bias=False)(x)
             x = BatchNormalization(name='norm_' + str(num_layer))(x)
             x = LeakyReLU(alpha=0.1)(x)
@@ -50,7 +50,7 @@ class CrateNet:
         # stack 3, does not reduce extends but enlarges the area of influence
         # for each convolution mask
         for i in range(0, 1):
-            x = Conv2D(7, (1, 1), strides=(1, 1), padding='same',
+            x = Conv2D(256, (1, 1), strides=(1, 1), padding='same',
                        name='conv_' + str(num_layer), use_bias=False)(x)
             x = BatchNormalization(name='norm_' + str(num_layer))(x)
             x = LeakyReLU(alpha=0.1)(x)

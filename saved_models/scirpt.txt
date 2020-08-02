@@ -1,0 +1,1 @@
+python keras2tensorflow.py --input_model=model_1_aug_pretrained.h5 --output_model=model_1_aug_pretrained --output_nodes_prefix=reshape_1
