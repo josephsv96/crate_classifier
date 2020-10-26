@@ -5,5 +5,16 @@
     "num_exp": 3,
     "num_classes": 20,
     "bg_class_id": [0, 9, 10],
-    "cls_thres": 0.85
+    "cls_thres": 0.85,
+    "guassian":{
+        "ksize": [19,19],
+        "sigma": 4.4
+    },
+    "augmentations":{
+        "scale": [1.0, 1.2],
+        "trans_x": [-0.25, 0.07], 
+        "trans_y": [-0.01, 0.01],
+        "rotate": [-4.0, 4.0],
+        "shear": [1.0, 1.2]
+    }
 }

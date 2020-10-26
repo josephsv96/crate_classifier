@@ -16,14 +16,18 @@ class Augmenter:
     to generate augmented images from them.
     """
 
-    def __init__(self, img_paths, ann_paths, out_h, out_w, num_exp, out_dir=None):
+    def __init__(self, PARAMS, img_paths, ann_paths, out_h, out_w, num_exp, out_dir=None):
+
         self.img_paths = img_paths
         self.ann_paths = ann_paths
-        self.out_h = out_h
-        self.out_w = out_w
+        self.src_h, self.src_w = PARAMS["img_src_shape"]
+        self.out_h, self.out_w = PARAMS["net_in_shape"]
 
-        self.num_exp = num_exp
+        self.num_exp = PARAMS["num_exp"]
         self.num_img = int(len(img_paths) / self.num_exp)
+
+        self.AUG_CONFIG = PARAMS["augmentations"]
+        self.GAUSS_CONFIG = PARAMS["guassian"]
 
         self.out_dir = out_dir
 
@@ -31,7 +35,7 @@ class Augmenter:
             create_output_folder(Path(self.out_dir))
 
     @staticmethod
-    def get_augmenters(num_gen):
+    def get_augmenters(num_gen, aug_config):
         """Generate a list of deterministic augmenters. num_gen = 0 or None
         will return a single Augmenter
 
@@ -41,17 +45,14 @@ class Augmenter:
         Returns:
             list: List of Augmeters
         """
-        # seq_img = iaa.Sequential([iaa.Fliplr(0.5),
-        #                           iaa.Affine(scale=(1.0, 1.2),
-        #                                      translate_percent={
-        #                               "x": (-0.25, 0.07), "y": (-0.01, 0.01)},
-        #                               rotate=(-4.0, 4.0), shear=(-0.1, 0.1))],
-        #                          random_order=False, random_state=0)
-
-        # No x <-> y movement and shear
         seq_img = iaa.Sequential([iaa.Fliplr(0.5),
-                                  iaa.Affine(scale=(1.0, 1.2),
-                                             rotate=(-4.0, 4.0))],
+                                  iaa.Affine(scale=aug_config["scale"],
+                                             translate_percent={
+                                                 "x": aug_config["trans_x"],
+                                                 "y": aug_config["trans_y"]},
+                                             rotate=aug_config["rotate"],
+                                             shear=aug_config["shear"]
+                                             )],
                                  random_order=False, random_state=0)
 
         seq_img_list = seq_img.to_deterministic(n=num_gen)
@@ -83,9 +84,21 @@ class Augmenter:
         return img_sq
 
     @ staticmethod
-    def gaussian_blur(img_instance):
-        img_instance = cv2.GaussianBlur(
-            img_instance, (19, 19), 0.4*11, cv2.BORDER_DEFAULT)
+    def gaussian_blur(img_instance, gauss_config):
+        """Apply Gaussian filter to an image instance
+
+        Args:
+            img_instance (numpy.array): Input image array
+            gauss_config (dict): Filter parameters
+
+        Returns:
+            numpy.array: Blurred image output
+        """
+        img_instance = cv2.GaussianBlur(img_instance,
+                                        ksize=tuple(gauss_config["ksize"]),
+                                        sigmaX=gauss_config["sigma"],
+                                        borderType=cv2.BORDER_DEFAULT)
+
         return img_instance
 
     def get_img_augs(self, img_files, augmenter):
@@ -108,7 +121,8 @@ class Augmenter:
 
             aug_img = augmenter.augment_image(image_instance)
 
-            img_buffer = self.to_square(self.gaussian_blur(aug_img))
+            img_buffer = self.to_square(self.gaussian_blur(aug_img,
+                                                           self.GAUSS_CONFIG))
             img_buffer = cv2.resize(img_buffer, (self.out_h, self.out_w),
                                     interpolation=cv2.INTER_NEAREST)
             img_aug[:, :, j:j+3] = img_buffer
@@ -160,7 +174,7 @@ class Augmenter:
             dtype=np.float32)
 
         # Generating augmenters
-        augs = self.get_augmenters(num_gen=num_gen)
+        augs = self.get_augmenters(num_gen=num_gen, aug_config=self.AUG_CONFIG)
 
         # Select image and corresponding annotation randomly
         for i in tqdm(range(num_gen)):
@@ -182,8 +196,7 @@ class Augmenter:
 
             # Annot Generation
             # (i,128,128,1) = f(random_index,964,1292,1)
-            # Parmeterize annot shape
-            annot_instance = read_cmp(ann_file, (964, 1292))
+            annot_instance = read_cmp(ann_file, (self.src_h, self.src_w))
             ann_aug_arr[i, :, :, :] = self.get_ann_augs(annot_instance,
                                                         augmenter=augs[i])
 
@@ -199,8 +212,12 @@ class Augmenter:
                                 img_aug_arr[i, :, :, j:j+self.num_exp])
                     j += self.num_exp
 
+                # writing image set to .npy
+                img_file = f"{self.out_dir}/img_{str(i).zfill(3)}"
+                save_npy_v2(img_aug_arr[i, :, :, :], img_file)
+
                 # writing annotation to .npy
-                ann_file = f"{self.out_dir}/img_{str(i).zfill(3)}_mask"
+                ann_file = f"{self.out_dir}/ann_{str(i).zfill(3)}"
                 save_npy_v2(ann_aug_arr[i, :, :, :], ann_file)
 
                 # !WORK-IN-PROGRESS

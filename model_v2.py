@@ -67,7 +67,7 @@ class CrateNet:
         print("stack 4")
 
         # Final Activation
-        # x = LeakyReLU(alpha=0.1)(x)
+        x = LeakyReLU(alpha=0.1)(x)
 
         # Output Detection layer
         x = Conv2D(num_classes, (1, 1), strides=(1, 1), padding='same',
