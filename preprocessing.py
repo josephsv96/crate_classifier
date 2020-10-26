@@ -1,7 +1,12 @@
+# Dependencies
 import numpy as np
 import cv2
 from tensorflow.keras.utils import to_categorical
 from sklearn.model_selection import train_test_split
+from tqdm import tqdm
+
+# Local Modules
+from utilities import read_image, read_cmp
 
 
 def img_preprocess(IMAGE_SETS):
@@ -155,3 +160,48 @@ def ann_preprocess_v2(annot_arr, num_exp=3):
         new_annot_arr[i, :, :, :] = annot_arr[j, :, :, :]
         j += num_exp
     return new_annot_arr
+
+
+def get_dataset(dataset_path, num_exp=1):
+    """Create the image and annotation dataset from given path.
+    Given path should contain both image and corresponding annotation.
+    Image file as .bmp.
+    Annotation file as .cmp
+
+    Args:
+        dataset_path ([path]): [Path of the image and annotation files]
+        num_exp (int, optional): [Number of exposures of images]. Defaults to 1.
+
+    Returns:
+        [numpy.array]: [image array, (num_img, height, width, num_exp)]
+        [numpy.array]: [annotation array, (num_img, height, width, 1)]
+    """
+    img_files = list(dataset_path.glob("**/*.bmp"))
+    cmp_files = list(dataset_path.glob("**/*.cmp"))
+
+    # State of image directory
+    img_num = int(len(img_files)/num_exp)
+    err_path = dataset_path.parent.stem + "/" + dataset_path.stem
+    assert(img_num == len(cmp_files)
+           ), f"Number of images and annotations should be equal in {err_path}"
+
+    # Initializing img_arr, ann_arr
+    init_img = read_image(img_files[0])
+    init_h = init_img.shape[0]
+    init_w = init_img.shape[1]
+
+    img_arr = np.zeros([img_num, init_h, init_w, 3 * num_exp])
+    ann_arr = np.zeros([img_num, init_h, init_w, 1])
+
+    # Loading the imgages
+    j = 0
+    for i in tqdm(range(img_num), desc="Creating dataset"):
+        # scale this to num_exp
+        img_arr[i, :, :, 0:3] = read_image(img_files[j])
+        img_arr[i, :, :, 3:6] = read_image(img_files[j+1])
+        img_arr[i, :, :, 6:9] = read_image(img_files[j+2])
+        j += 3
+
+        ann_arr[i, :, :, 0] = read_cmp(cmp_files[i], init_h, init_w)
+
+    return img_arr, ann_arr

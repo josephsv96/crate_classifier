@@ -1,0 +1,9 @@
+{
+    "src_dir": "images/img_3_sample_train",
+    "img_src_shape": [964, 1292],
+    "net_in_shape": [128, 128],
+    "num_exp": 3,
+    "num_classes": 20,
+    "bg_class_id": [0, 9, 10],
+    "cls_thres": 0.85
+}
