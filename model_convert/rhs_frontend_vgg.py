@@ -12,7 +12,7 @@ from keras.layers.merge import concatenate
 from keras.optimizers import SGD, Adam, RMSprop
 from rhs_preprocessing import YoloBatchGenerator
 from keras.callbacks import EarlyStopping, ModelCheckpoint, TensorBoard
-#from yolo_backend import TinyYoloFeature
+# from yolo_backend import TinyYoloFeature
 import keras
 import sys
 import matplotlib.pyplot as plt
@@ -21,12 +21,23 @@ import matplotlib.pyplot as plt
 class SpecialYOLO(object):
     def __init__(self, input_width,
                  input_height,
+                 image_width,
+                 image_height,
+                 scale,
+                 gauss_kernel_radius,
+                 gauss_sigma,
                  num_classes,
                  num_exposures,
                  class_weights):
 
-        self.input_width = input_width
+        self.input_width = input_width   # extents of CNN input gate
         self.input_height = input_height
+        self.image_width = image_width   # extents of original image
+        self.image_height = image_height
+        # downscale factor from orpginal image to CNN input image
+        self.scale = scale
+        self.gauss_kernel_radius = gauss_kernel_radius
+        self.gauss_sigma = gauss_sigma
         self.num_classes = num_classes
         self.num_exposures = num_exposures
         self.class_weights = class_weights
@@ -36,55 +47,90 @@ class SpecialYOLO(object):
         ##########################
 
         self.seen = 0
-
+        num_layer = 0
         # make the feature extractor layers
         input_image = Input(
-            shape=(self.input_height, self.input_width, 3*num_exposures))
-        num_layer = 0
-
-        # stack 1, no reduction
-        x = Conv2D(32, (3, 3), strides=(1, 1), padding='same',
-                   name='conv_' + str(num_layer), use_bias=False, kernel_initializer='random_normal')(input_image)
-        x = BatchNormalization(name='norm_' + str(num_layer))(x)
-        x = LeakyReLU(alpha=0.1)(x)
-        #x = MaxPooling2D(pool_size=(1, 1))(x)
+            shape=(self.input_height, self.input_width, 3*num_exposures), name="input_1")
+        x = input_image
         num_layer += 1
+        # stack 1, no reduction
+        for i in range(0, 2):
+            x = Conv2D(16, (3, 3), strides=(1, 1), padding='same',
+                       name='conv_' + str(num_layer), use_bias=False)(x)
+            x = BatchNormalization(name='norm_' + str(num_layer))(x)
+            x = LeakyReLU(alpha=0.1)(x)
+            num_layer += 1
+        # x = MaxPooling2D(pool_size=(1, 1))(x)
         print("stack 1")
 
         # stack 2, does not reduce extents but enlarges the area of influence for each convolution mask
-        for i in range(0, 48):
-            x = Conv2D(8, (3, 3), strides=(1, 1), padding='same', name='conv_' +
-                       str(num_layer), use_bias=False, kernel_initializer='random_normal')(x)
+        for i in range(0, 2):
+            x = Conv2D(16, (3, 3), strides=(1, 1), padding='same',
+                       name='conv_' + str(num_layer), use_bias=False)(x)
             x = BatchNormalization(name='norm_' + str(num_layer))(x)
             x = LeakyReLU(alpha=0.1)(x)
-            #x = MaxPooling2D(pool_size=(1, 1))(x)
+            # x = MaxPooling2D(pool_size=(1, 1))(x)
             num_layer += 1
 
         print("stack 2")
         # stack 3, does not reduce extents but enlarges the area of influence for each convolution mask
-        for i in range(0, 1):
-            x = Conv2D(256, (1, 1), strides=(1, 1), padding='same', name='conv_' +
-                       str(num_layer), use_bias=False, kernel_initializer='random_normal')(x)
+        for i in range(0, 2):
+            x = Conv2D(16, (3, 3), strides=(1, 1), padding='same',
+                       name='conv_' + str(num_layer), use_bias=False)(x)
             x = BatchNormalization(name='norm_' + str(num_layer))(x)
             x = LeakyReLU(alpha=0.1)(x)
             num_layer += 1
 
+        x = Conv2D(16, (1, 1), strides=(1, 1), padding='same',
+                   name='conv_' + str(num_layer), use_bias=False)(x)
+        x = BatchNormalization(name='norm_' + str(num_layer))(x)
+        x = LeakyReLU(alpha=0.1)(x)
+        num_layer += 1
         print("stack 3")
 
-        # stack 4, does not reduce extents5
-        x = Conv2D(self.num_classes, (1, 1), strides=(1, 1), padding='same', name='conv_' +
-                   str(num_layer), use_bias=False, kernel_initializer='random_normal')(x)
+        # stack 4
+        for i in range(0, 2):
+            x = Conv2D(16, (3, 3), strides=(1, 1), padding='same',
+                       name='conv_' + str(num_layer), use_bias=False)(x)
+            x = BatchNormalization(name='norm_' + str(num_layer))(x)
+            x = LeakyReLU(alpha=0.1)(x)
+            num_layer += 1
+
+        x = Conv2D(16, (1, 1), strides=(1, 1), padding='same',
+                   name='conv_' + str(num_layer), use_bias=False)(x)
         x = BatchNormalization(name='norm_' + str(num_layer))(x)
         x = LeakyReLU(alpha=0.1)(x)
         num_layer += 1
         print("stack 4")
 
+        # stack 5
+        for i in range(0, 2):
+            x = Conv2D(16, (3, 3), strides=(1, 1), padding='same',
+                       name='conv_' + str(num_layer), use_bias=False)(x)
+            x = BatchNormalization(name='norm_' + str(num_layer))(x)
+            x = LeakyReLU(alpha=0.1)(x)
+            num_layer += 1
+
+        x = Conv2D(16, (1, 1), strides=(1, 1), padding='same',
+                   name='conv_' + str(num_layer), use_bias=False)(x)
+        x = BatchNormalization(name='norm_' + str(num_layer))(x)
+        x = LeakyReLU(alpha=0.1)(x)
+        num_layer += 1
+        print("stack 5")
+
+        # stack 6, does not reduce extents5
+        x = Conv2D(self.num_classes, (1, 1), strides=(
+            1, 1), padding='same', name='conv_' + str(num_layer), use_bias=False)(x)
+        x = BatchNormalization(name='norm_' + str(num_layer))(x)
+        x = LeakyReLU(alpha=0.1)(x)
+        num_layer += 1
+        print("stack 6")
+
         # make the object detection layer, but its overwitten below!!
-        output = Conv2D(self.num_classes,
-                        (1, 1), strides=(1, 1),
-                        padding='same',
-                        name='DetectionLayer',
-                        kernel_initializer='lecun_normal')(x)
+        x = Conv2D(self.num_classes,
+                   (1, 1), strides=(1, 1),
+                   padding='same',
+                   name='DetectionLayer', use_bias=False)(x)
 
         print("x.shape=", x.shape.as_list())
         self.grid_h = x.shape.as_list()[1]
@@ -92,12 +138,13 @@ class SpecialYOLO(object):
 
         print("self.grid_h, self.grid_w=", self.grid_h, self.grid_w)
 
-        output = Reshape((self.grid_h, self.grid_w, self.num_classes))(x)
+        output = Reshape((self.grid_h, self.grid_w, self.num_classes),
+                         name="reshape_1")(x)
 
         print("model_1 input shape=", input_image.shape)
         print("model_2 output shape=", output.shape)
 
-        #self.model = Model([input_image, self.true_kpps], output)
+        # self.model = Model([input_image, self.true_kpps], output)
         self.model = Model(inputs=input_image, outputs=output)
 
         # ----------------------------------------------------------------------------------------------
@@ -106,12 +153,12 @@ class SpecialYOLO(object):
 
         # initialize the weights of the detection layer
         # layer = self.model.layers  #all layers
-        #weights = layer.get_weights()
+        # weights = layer.get_weights()
 
-        #new_kernel = np.random.normal(size=weights[0].shape)/(self.grid_h*self.grid_w)
-        #new_bias   = np.random.normal(size=weights[1].shape)/(self.grid_h*self.grid_w)
+        # new_kernel = np.random.normal(size=weights[0].shape)/(self.grid_h*self.grid_w)
+        # new_bias   = np.random.normal(size=weights[1].shape)/(self.grid_h*self.grid_w)
 
-        #layer.set_weights([new_kernel, new_bias])
+        # layer.set_weights([new_kernel, new_bias])
 
         # print a summary of the whole model
         self.model.summary(positions=[.25, .60, .80, 1.])
@@ -129,34 +176,34 @@ class SpecialYOLO(object):
         nb_cells = self.grid_w*self.grid_h
         pred_class = y_pred
         true_class = y_true
-        #batch_size = tf.to_float( tf.shape( y_true )[0])
+        # batch_size = tf.to_float( tf.shape( y_true )[0])
         batch_size = tf.cast(tf.shape(y_true)[0], dtype=tf.float32)
 
         # batch_size = tf.Print( batch_size, [batch_size], message="batch_size \n", summarize=500 )
         # tf.print(batch_size, output_stream=sys.stderr)
 
-        #pred_class = tf.Print( pred_class, [pred_class], message="pred_class \n", summarize=500 )
-        #true_class = tf.Print( true_class, [true_class], message="true_class \n", summarize=500 )
+        # pred_class = tf.Print( pred_class, [pred_class], message="pred_class \n", summarize=500 )
+        # true_class = tf.Print( true_class, [true_class], message="true_class \n", summarize=500 )
 
         # class_mask is made to reduce punishing of background class which is at index 0 in one-hot-class-vector
         # class_mask = tf.Variable( tf.ones( tf.shape( y_true )[-1]-1),dtype = tf.float32)
 
         class_mask = self.class_weights
-        #class_mask = tf.ones( (tf.shape( y_true )[-1]-1))
-        #class_mask = tf.concat( [[0.1], class_mask], 0 )
+        # class_mask = tf.ones( (tf.shape( y_true )[-1]-1))
+        # class_mask = tf.concat( [[0.1], class_mask], 0 )
         class_mask = tf.tile(
             class_mask, [tf.reduce_prod(tf.shape(y_true)[:3])])
         class_mask = tf.reshape(class_mask, tf.shape(y_true))
 
-        #class_mask = tf.Print( class_mask, [class_mask], message="class_mask \n", summarize=100000 )
+        # class_mask = tf.Print( class_mask, [class_mask], message="class_mask \n", summarize=100000 )
 
         diff_sqr_class = tf.square(true_class-pred_class) * class_mask
-        #diff_sqr_class = tf.Print( diff_sqr_class, [diff_sqr_class], message="diff_sgr_class \n", summarize=10000 )
+        # diff_sqr_class = tf.Print( diff_sqr_class, [diff_sqr_class], message="diff_sgr_class \n", summarize=10000 )
 
         loss_class = tf.reduce_sum(diff_sqr_class) / \
             (nb_cells*self.num_classes*batch_size)
 
-        #loss_class = tf.Print( loss_class, [loss_class], message="loss_class \n", summarize=100000 )
+        # loss_class = tf.Print( loss_class, [loss_class], message="loss_class \n", summarize=100000 )
 
         # loss = tf.cond(tf.less(self.seen, self.warmup_batches+1),
         #               lambda: loss_class + 10 + loss_conf + 10,
@@ -185,12 +232,10 @@ class SpecialYOLO(object):
         self.model.load_weights(weight_path)
         self.model.save(weight_path+"full")
 
-        print("input layer name=")
-        print([node.op.name for node in self.model.inputs])
-        print("output layer name=")
-        print([node.op.name for node in self.model.outputs])
+        #print([("input layer name=") .op.name for node in self.model.inputs])
+        #print([("output layer name =") .op.name for node in self.model.outputs])
 
-        return self.model.output.shape[1:3]
+        return self.model.output.shape[1: 3]
 
     def normalize(self, image):
         return image / 255.0
@@ -205,9 +250,11 @@ class SpecialYOLO(object):
               num_classes,
               warmup_epochs,  # number of initial batches to let the model familiarize with the new dataset
               saved_weights_name='crates.h5',
-              debug=False):
+              debug=False,
+              crates_only=0):
 
         self.batch_size = batch_size
+        self.crates_only = crates_only
 
         self.debug = debug
 
@@ -216,13 +263,19 @@ class SpecialYOLO(object):
         ############################################
 
         generator_config = {
-            'IMAGE_H': self.input_height,
-            'IMAGE_W': self.input_width,
+            'INPUT_W': self.input_width,
+            'INPUT_H': self.input_height,
+            'IMAGE_W': self.image_width,
+            'IMAGE_H': self.image_height,
+            'SCALE': self.scale,
+            'GAUSS_KERNEL_RADIUS': self.gauss_kernel_radius,
+            'GAUSS_SIGMA': self.gauss_sigma,
             'GRID_H': self.grid_h,
             'GRID_W': self.grid_w,
             'BATCH_SIZE': self.batch_size,
             'NUM_CLASSES': self.num_classes,
-            'NUM_EXPOSURES': self.num_exposures
+            'NUM_EXPOSURES': self.num_exposures,
+            'CRATES_ONLY': self.crates_only
         }
 
         train_generator = YoloBatchGenerator(train_imgs,
@@ -311,9 +364,9 @@ class SpecialYOLO(object):
         #    cv2.imwrite( "data\\aug_images\\augimg_"+str( i ) + ".bmp", train_generator.proto_images[i] )
 
     def predict(self, images):
-        #image_h, image_w, _ = image.shape
-        #image = cv2.resize(image, (self.input_size, self.input_size))
-        #image = self.normalize(image)
+        # image_h, image_w, _ = image.shape
+        # image = cv2.resize(image, (self.input_size, self.input_size))
+        # image = self.normalize(image)
 
         # input_image = image #image[:,:,::-1] #flip rgb to bgr or vice versa
         # input_image = np.expand_dims(input_image, 0)  #why?

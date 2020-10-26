@@ -11,9 +11,12 @@ def highest_point(arr):
     return minimun_val
 
 
-def plot_history(history_list, epochs):
+def plot_history(history_list, epochs, model_names=None):
     plt.figure(figsize=(30, 15))
-    plot_colors = ['b', 'm', 'r', 'g']
+    plot_colors = ['tab:orange', 'lime', 'b', 'm', 'r', 'g', ]
+    # Initializing names
+    if model_names is None or len(model_names) != len(history_list):
+        model_names = [f"model_1{i}" for i in range(len(history_list))]
     #  "Accuracies"
     plt.subplot(1, 2, 1)
     plot_legend = []
@@ -24,15 +27,16 @@ def plot_history(history_list, epochs):
         max_acc_val = max(model_history.history['val_accuracy']) * 100
         max_pt_val = highest_point(model_history.history['accuracy'])
 
-        print(f"(Acc) model_{i+1}: {max_acc:.4f} @ {max_pt}/{epochs}")
-        print(f"(Val) model_{i+1}: {max_acc_val:.4f} @ {max_pt_val}/{epochs}")
+        print(f"(Acc) {model_names[i]}: {max_acc:.4f} @ {max_pt}/{epochs}")
+        print(
+            f"(Val) {model_names[i]}: {max_acc_val:.4f} @ {max_pt_val}/{epochs}")
         print("\t")
         # Plots
         plt.plot(model_history.history['accuracy'], '--' + plot_colors[i])
         plt.plot(model_history.history['val_accuracy'], plot_colors[i])
         # plt.hlines(y=max(model_history.history['accuracy']), xmin=0, xmax=epochs)
-        plot_legend.append(f'model_{i+1}_train')
-        plot_legend.append(f'model_{i+1}_val')
+        plot_legend.append(f'{model_names[i]}_train')
+        plot_legend.append(f'{model_names[i]}_val')
     # plot labels
     plt.title('Model Accuracy')
     plt.ylabel('Accuracy')
@@ -46,8 +50,8 @@ def plot_history(history_list, epochs):
         plt.plot(model_history.history['loss'], '--' + plot_colors[i])
         plt.plot(model_history.history['val_loss'], plot_colors[i])
         # plt.hlines(y=min(model_history.history['loss']), xmin=0, xmax=epochs)
-        plot_legend.append(f'model_{i+1}_train')
-        plot_legend.append(f'model_{i+1}_val')
+        plot_legend.append(f'{model_names[i]}_train')
+        plot_legend.append(f'{model_names[i]}_val')
     # plot labels
     plt.title('Model Loss')
     plt.ylabel('Loss')

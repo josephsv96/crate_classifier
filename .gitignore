@@ -1,6 +1,9 @@
 .vscode/
 __pycache__/
 dataset/
-model/
+images/
+outputs/
+pkg_0/
+sample_models/
+to_rm/
 tests/
-utilities/
