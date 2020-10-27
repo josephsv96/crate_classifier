@@ -75,14 +75,14 @@ def create_output_folder(working_dir, folder_name="output_"):
     # output_dir = working_dir.parent / (working_dir.stem + "_processed")
     output_dir = working_dir.parent / folder_name
     if output_dir.is_dir():
-        print(f"{folder_name} exists")
+        # print(f"{folder_name} exists")
         try:
             output_dir.rmdir()
         except OSError as err:
             print("Error: %s : %s" % (output_dir, err.strerror))
             print("Overwriting...")
     else:
-        print("output folder created")
+        # print("output folder created")
         output_dir.mkdir()
 
     return output_dir
@@ -217,11 +217,14 @@ def bgr_to_rgb(img_arr, num_exp):
 
     return buffer_arr
 
-# def bgr_to_rgb(image_arr):
-#     image_arr_rgb = np.zeros(image_arr[index, :, :, :3].shape)
-#     image_arr_rgb[:, :, 0] = image_arr[index, :, :, 2]
-#     image_arr_rgb[:, :, 1] = image_arr[index, :, :, 1]
-#     image_arr_rgb[:, :, 2] = image_arr[index, :, :, 0]
+
+def bgr_to_rgb_img(image_arr):
+    image_arr_rgb = np.zeros(image_arr.shape)
+    image_arr_rgb[:, :, 0] = image_arr[:, :, 2]
+    image_arr_rgb[:, :, 1] = image_arr[:, :, 1]
+    image_arr_rgb[:, :, 2] = image_arr[:, :, 0]
+
+    return image_arr_rgb
 
 
 def show_dataset(img_arr, ann_arr, show_num, num_exp, num_class, BGR=True):

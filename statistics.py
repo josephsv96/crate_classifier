@@ -2,6 +2,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
+from utilities import get_custom_cmap
+
 
 def class_identifier(annot_arr):
     """Identifies the "major" class found in the annotation
@@ -25,15 +27,17 @@ def class_identifier(annot_arr):
 
 def show_class_dist(annot_arr):
     class_list = class_identifier(annot_arr)
-    color_list = ["#288e08", "#1cd7e3", "#a4a4a4", "#d5f017",
-                  "#c86110", "#094795", "#3b109f", "#5e089b"]
+
+    CMAP = get_custom_cmap()
+
     x = [f"class_{i}" for i in range(1, np.max(class_list)+1)]
     y = np.bincount(class_list)[1:]
 
     x_pos = [i for i, _ in enumerate(x)]
 
     plt.figure(figsize=(10, 6))
-    plt.bar(x, y, color=color_list)
+
+    plt.bar(x, y, color=[CMAP(i) for i in range(len(class_list))])
 
     # Mean and stdard dev
     mu = np.mean(y)

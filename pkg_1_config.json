@@ -6,6 +6,7 @@
     "num_classes": 20,
     "bg_class_id": [0, 9, 10],
     "cls_thres": 0.85,
+    "det_thres": 0.85,
     "guassian":{
         "ksize": [19,19],
         "sigma": 4.4

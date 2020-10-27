@@ -16,7 +16,7 @@ class Augmenter:
     to generate augmented images from them.
     """
 
-    def __init__(self, PARAMS, img_paths, ann_paths, out_h, out_w, num_exp, out_dir=None):
+    def __init__(self, PARAMS, img_paths, ann_paths, out_dir):
 
         self.img_paths = img_paths
         self.ann_paths = ann_paths
@@ -31,8 +31,12 @@ class Augmenter:
 
         self.out_dir = out_dir
 
-        if out_dir is not None:
+        if out_dir is None:
+            print("Output path not given")
+        else:
             create_output_folder(Path(self.out_dir))
+            (Path(self.out_dir) / "npy_files").mkdir()
+            (Path(self.out_dir) / "images").mkdir()
 
     @staticmethod
     def get_augmenters(num_gen, aug_config):
@@ -177,6 +181,7 @@ class Augmenter:
         augs = self.get_augmenters(num_gen=num_gen, aug_config=self.AUG_CONFIG)
 
         # Select image and corresponding annotation randomly
+        # for i in range(num_gen):
         for i in tqdm(range(num_gen)):
 
             np.random.seed(i * abs(r_state))
@@ -207,17 +212,17 @@ class Augmenter:
 
                 # writing images to .bmp
                 for k, ch in zip(range(self.num_exp), exp_names):
-                    img_file = f"{self.out_dir}/img_{str(i).zfill(3)}_{ch}.bmp"
+                    img_file = f"{self.out_dir}/images/img_{str(i).zfill(3)}_{ch}.bmp"
                     cv2.imwrite(img_file,
                                 img_aug_arr[i, :, :, j:j+self.num_exp])
                     j += self.num_exp
 
                 # writing image set to .npy
-                img_file = f"{self.out_dir}/img_{str(i).zfill(3)}"
+                img_file = f"{self.out_dir}/npy_files/img_{str(i).zfill(3)}"
                 save_npy_v2(img_aug_arr[i, :, :, :], img_file)
 
                 # writing annotation to .npy
-                ann_file = f"{self.out_dir}/ann_{str(i).zfill(3)}"
+                ann_file = f"{self.out_dir}/npy_files/ann_{str(i).zfill(3)}"
                 save_npy_v2(ann_aug_arr[i, :, :, :], ann_file)
 
                 # !WORK-IN-PROGRESS
