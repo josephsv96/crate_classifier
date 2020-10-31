@@ -54,3 +54,30 @@ def show_class_dist(annot_arr):
     plt.xticks(x_pos, x)
 
     plt.show()
+
+
+def class_dist_from_db(annot_db):
+    """
+    Only considers valid classes
+    """
+    CMAP = get_custom_cmap()
+    x = np.array(list(annot_db.keys()))
+    y = np.array([len(annot_db[dict_key]) for dict_key in annot_db.keys()])
+
+    plt.figure(figsize=(10, 6))
+    plt.bar(x, y, color=[CMAP(i) for i in range(len(x))])
+
+    # Mean and stdard dev
+    mu = np.mean(y)
+    stdev = np.std(y)
+    plt.hlines(y=mu, xmin=x[0], xmax=x[-1], label="mu")
+    plt.hlines(y=mu + stdev, xmin=x[0], xmax=x[-1],
+               linestyles="dotted", label="+sigma")
+    plt.hlines(y=mu - stdev, xmin=x[0], xmax=x[-1],
+               linestyles="dotted", label="-sigma")
+
+    plt.xlabel("Classes")
+    plt.ylabel("Frequency")
+    plt.title("Class Distribution")
+
+    plt.show()

@@ -96,7 +96,7 @@ class SlidingWindow:
         """
         CMAP = get_custom_cmap()
         self.Slide()
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(8, 8))
         for im_num in range(self.w_iter):
             plt.subplot(self.xy_iter, self.xy_iter, im_num+1)
             if self.sliced_arr.shape[-1] == 1:
@@ -125,7 +125,8 @@ class SlidingWindow:
                 detected_cls = np.where(
                     cls_den_arr > self.PARAMS["det_thres"])[0][0]
             except IndexError:
-                # Pushing images with less than threshold to or first id or last id
+                # Pushing images with less than threshold to or first id
+                # or last id
                 detected_cls = 0
 
             sec_db[f"sec_{i}"].append(detected_cls)
@@ -139,7 +140,7 @@ class SlidingWindow:
         sector_class = self.sort_img_arr_by_class()
         CMAP = get_custom_cmap()
         self.Slide()
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(8, 8))
         for im_num in range(self.w_iter):
             plt.subplot(self.xy_iter, self.xy_iter, im_num+1)
             if self.sliced_arr.shape[-1] == 1:
@@ -161,7 +162,7 @@ class SlidingWindow:
         sector_class = self.sort_img_arr_by_class()
         CMAP = get_custom_cmap()
         self.Slide()
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(8, 8))
         plt.imshow(bgr_to_rgb_img(image_inst))
         for im_num in range(self.w_iter):
             plt.scatter(self.window_indices_x[im_num],
@@ -169,4 +170,7 @@ class SlidingWindow:
                         s=100,
                         color=CMAP(sector_class[im_num]),
                         marker="s")
+        plt.xticks([])
+        plt.yticks([])
+        plt.tight_layout()
         plt.show()

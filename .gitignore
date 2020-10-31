@@ -3,6 +3,8 @@ __pycache__/
 dataset/
 images/
 outputs/
+output_/
 pkg_0/
+pkg_1_outputs/
 sample_models/
 to_rm/

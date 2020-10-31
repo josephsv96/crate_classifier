@@ -9,6 +9,7 @@ import cv2
 from utilities import create_output_folder
 from utilities import save_npy_v2
 from utilities import read_cmp
+from utilities import get_timestamp
 
 
 class Augmenter:
@@ -16,7 +17,7 @@ class Augmenter:
     to generate augmented images from them.
     """
 
-    def __init__(self, PARAMS, img_paths, ann_paths, out_dir):
+    def __init__(self, PARAMS, img_paths, ann_paths, out_dir=None):
 
         self.img_paths = img_paths
         self.ann_paths = ann_paths
@@ -26,19 +27,23 @@ class Augmenter:
         self.num_exp = PARAMS["num_exp"]
         self.num_img = int(len(img_paths) / self.num_exp)
 
-        self.AUG_CONFIG = PARAMS["augmentations"]
+        self.AUG_CONFIG = PARAMS["augmentation"]
         self.GAUSS_CONFIG = PARAMS["guassian"]
 
         self.out_dir = out_dir
 
         if out_dir is None:
-            print("Output path not given")
-        else:
-            create_output_folder(Path(self.out_dir))
-            (Path(self.out_dir) / "npy_files").mkdir()
-            (Path(self.out_dir) / "images").mkdir()
+            out_path = create_output_folder(Path.cwd(),
+                                            folder_name="output_")
 
-    @staticmethod
+            self.out_dir = "/".join(str(out_path).split("\\")
+                                    ) + "/" + get_timestamp()
+            (Path(self.out_dir)).mkdir()
+            (Path(self.out_dir) / "images").mkdir()
+            (Path(self.out_dir) / "npy_images").mkdir()
+            (Path(self.out_dir) / "npy_annots").mkdir()
+
+    @ staticmethod
     def get_augmenters(num_gen, aug_config):
         """Generate a list of deterministic augmenters. num_gen = 0 or None
         will return a single Augmenter
@@ -52,18 +57,18 @@ class Augmenter:
         seq_img = iaa.Sequential([iaa.Fliplr(0.5),
                                   iaa.Affine(scale=aug_config["scale"],
                                              translate_percent={
-                                                 "x": aug_config["trans_x"],
-                                                 "y": aug_config["trans_y"]},
-                                             rotate=aug_config["rotate"],
-                                             shear=aug_config["shear"]
-                                             )],
-                                 random_order=False, random_state=0)
+                                      "x": aug_config["trans_x"],
+                                      "y": aug_config["trans_y"]},
+            rotate=aug_config["rotate"],
+            shear=aug_config["shear"]
+        )],
+            random_order=False, random_state=0)
 
         seq_img_list = seq_img.to_deterministic(n=num_gen)
 
         return seq_img_list
 
-    @staticmethod
+    @ staticmethod
     def to_square(img_instance):
         """Converts a wide image to square image, without loosing resolution.
 
@@ -154,7 +159,7 @@ class Augmenter:
 
         return annot_aug
 
-    def generate_aug(self, num_gen, r_state=1, write_img=False):
+    def generate_aug(self, num_gen, r_state=1, write_img=False, start_index=0):
         """To generate augmented image and annotation sets.
         Same augmentation is applied to a set of images and its annotation.
 
@@ -211,18 +216,21 @@ class Augmenter:
                 exp_names = [chr(ord('`')+i+1) for i in range(self.num_exp)]
 
                 # writing images to .bmp
-                for k, ch in zip(range(self.num_exp), exp_names):
-                    img_file = f"{self.out_dir}/images/img_{str(i).zfill(3)}_{ch}.bmp"
+                for _, ch in zip(range(self.num_exp), exp_names):
+                    img_name = f"img_{str(i+start_index).zfill(3)}_{ch}.bmp"
+                    img_file = f"{self.out_dir}/images/{img_name}"
                     cv2.imwrite(img_file,
                                 img_aug_arr[i, :, :, j:j+self.num_exp])
                     j += self.num_exp
 
                 # writing image set to .npy
-                img_file = f"{self.out_dir}/npy_files/img_{str(i).zfill(3)}"
+                img_name = f"img_{str(i+start_index).zfill(3)}"
+                img_file = f"{self.out_dir}/npy_images/{img_name}"
                 save_npy_v2(img_aug_arr[i, :, :, :], img_file)
 
                 # writing annotation to .npy
-                ann_file = f"{self.out_dir}/npy_files/ann_{str(i).zfill(3)}"
+                ann_name = f"ann_{str(i+start_index).zfill(3)}"
+                ann_file = f"{self.out_dir}/npy_annots/{ann_name}"
                 save_npy_v2(ann_aug_arr[i, :, :, :], ann_file)
 
                 # !WORK-IN-PROGRESS

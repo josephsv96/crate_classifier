@@ -4,6 +4,15 @@ from pathlib import Path
 from json import load as json_load
 from matplotlib.colors import LinearSegmentedColormap
 import matplotlib.pyplot as plt
+from datetime import datetime
+
+
+def get_timestamp():
+    now_d = datetime.now().date()
+    now_t = datetime.now().time()
+    timestamp = f"{now_d}-{now_t.hour}-{now_t.minute}-{now_t.second}"
+    # timestamp = datetime.now().strftime("%Y-%m-%d-%H-%M")
+    return timestamp
 
 
 def read_image(img_file, height=None):
@@ -73,16 +82,16 @@ def write_image(img, file_name):
 def create_output_folder(working_dir, folder_name="output_"):
 
     # output_dir = working_dir.parent / (working_dir.stem + "_processed")
-    output_dir = working_dir.parent / folder_name
+    output_dir = working_dir / folder_name
     if output_dir.is_dir():
-        # print(f"{folder_name} exists")
         try:
+            # Will not execute if folder is non-empty
             output_dir.rmdir()
+            output_dir.mkdir()
         except OSError as err:
             print("Error: %s : %s" % (output_dir, err.strerror))
             print("Overwriting...")
     else:
-        # print("output folder created")
         output_dir.mkdir()
 
     return output_dir
