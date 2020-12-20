@@ -262,3 +262,13 @@ def show_dataset(img_arr, ann_arr, show_num, num_exp, num_class, BGR=True):
         j += 1
     # plt.tight_layout()
     plt.show()
+
+
+def rm_duplicate(seq):
+    """
+    Remove duplicates from a list preserving order
+    https://www.peterbe.com/plog/uniqifiers-benchmark
+    """
+    seen = set()
+    seen_add = seen.add
+    return [x for x in seq if not (x in seen or seen_add(x))]

@@ -6,10 +6,10 @@ from tqdm import tqdm
 import cv2
 
 # Local Modules
-from utilities import create_output_folder
-from utilities import save_npy_v2
-from utilities import read_cmp
-from utilities import get_timestamp
+from utils import create_output_folder
+from utils import save_npy_v2
+from utils import read_cmp
+from utils import get_timestamp
 
 
 class Augmenter:
@@ -217,19 +217,19 @@ class Augmenter:
 
                 # writing images to .bmp
                 for _, ch in zip(range(self.num_exp), exp_names):
-                    img_name = f"img_{str(i+start_index).zfill(3)}_{ch}.bmp"
+                    img_name = f"img_{str(i+start_index).zfill(6)}_{ch}.bmp"
                     img_file = f"{self.out_dir}/images/{img_name}"
                     cv2.imwrite(img_file,
                                 img_aug_arr[i, :, :, j:j+self.num_exp])
                     j += self.num_exp
 
                 # writing image set to .npy
-                img_name = f"img_{str(i+start_index).zfill(3)}"
+                img_name = f"img_{str(i+start_index).zfill(6)}"
                 img_file = f"{self.out_dir}/npy_images/{img_name}"
                 save_npy_v2(img_aug_arr[i, :, :, :], img_file)
 
                 # writing annotation to .npy
-                ann_name = f"ann_{str(i+start_index).zfill(3)}"
+                ann_name = f"ann_{str(i+start_index).zfill(6)}"
                 ann_file = f"{self.out_dir}/npy_annots/{ann_name}"
                 save_npy_v2(ann_aug_arr[i, :, :, :], ann_file)
 

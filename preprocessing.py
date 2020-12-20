@@ -6,7 +6,7 @@ from sklearn.model_selection import train_test_split
 from tqdm import tqdm
 
 # Local Modules
-from utilities import read_image, read_cmp
+from utils import read_image, read_cmp
 
 
 def img_preprocess(IMAGE_SETS):

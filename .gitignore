@@ -1,5 +1,8 @@
+*.npy
+.pytest_cache/
 .vscode/
 __pycache__/
+annot_backup/
 dataset/
 images/
 outputs/

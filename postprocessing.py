@@ -33,3 +33,31 @@ class TileSplitter:
         S9 = annot_i[a+b:,   a+b:,   0]
 
         return [S1, S2, S3, S4, S5, S6, S7, S8, S9]
+
+
+class BandPass:
+    """To filter the output values of predictions, with minimum threshold,
+    min distance between the max values"""
+
+    def __init__(self, annot_cat, min_thres, min_dist):
+        # annot_cat is the out put of the net
+        self.annot_cat = annot_cat
+        self.min_thres = min_thres
+        self.min_dist = min_dist
+
+    @staticmethod
+    def low_pass(annot_cat, min_thres):
+        """
+        min_thres is the cutoff values, else 0
+        """
+        annot_l = np.where(annot_cat >= min_thres, annot_cat, 0)
+        annot_l = np.where(annot_l <= 12, annot_l, 0)
+
+        return annot_l
+
+
+# a = np.array([1, 23, 4, 5, 6, 8, 7, 10, 8, 9, 16])
+
+# b = np.where(a > 6, a, 0)
+
+# print(b)

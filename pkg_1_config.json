@@ -1,5 +1,5 @@
 {
-    "src_dir": "images/factory_images_annotated",
+    "src_dir": "images/sample",
     "out_dir":"pkg_1_outputs",
     "img_src_shape": [964, 1292],
     "net_in_shape": [128, 128],
@@ -20,10 +20,10 @@
         "shear": [1.0, 1.2]
     },
     "aug_gen":{
-        "dataset_size": 32,
-        "class_to_gen" : [0, 1, 2, 3, 4, 6, 7, 8],
+        "dataset_size": 160,
+        "class_to_gen" : [0, 1, 2, 3, 4, 5, 6, 7, 8],
         "r_state": 1,
         "num_gen": 20,
-        "gen_scale": 1.5
+        "gen_scale": 1.6
     }
 }

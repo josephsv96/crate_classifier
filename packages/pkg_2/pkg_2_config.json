@@ -1,0 +1,18 @@
+{
+    "usage":"To specify parameters for training the network",
+    "net_spec":{
+        "num_exp" : 3,
+        "net_depth": 3,
+        "net_h" : 128,
+        "net_w" : 128,
+        "r_state" : 0
+    },
+    "train":{
+        "epochs_pre": 100,
+        "epochs": 200,
+        "learning_rate" : 1e-2,
+        "batch_size" : 32
+    },
+    "models_path": "/models",
+    "class_limit": 20
+}

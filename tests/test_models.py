@@ -1,5 +1,6 @@
-import __init__
-
+"""Tests for models.
+Assumes img_file and ann_file follow naming conventions; see README.md
+"""
 try:
     from models import model_14k
     from models import model_densenet21
@@ -20,11 +21,12 @@ try:
     from models import model_vgg16_64k
 
 except ImportError as error:
-    print(f"Error: {error}; Check local modules not found")
+    print(f"Error: {error}; Local modules not found")
 except Exception as exception:
     print(exception)
 
 # Test Constants
+
 h, w, exp, d, class_num, lr, ep = (128, 128, 3, 20, 3, 0.01, 100)
 
 # Base Models
@@ -174,11 +176,3 @@ def test_model_17():
     assert(model.count_params() > 64000)
     assert(model.layers[0].name == "input_1")
     assert(model.layers[-1].name == "reshape_1")
-
-
-# def main():
-#     test_model_7()
-
-
-# if __name__ == "__main__":
-#     main()
