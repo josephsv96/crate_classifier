@@ -112,7 +112,7 @@ six==1.15.0
 sklearn==0.0
 snooty-lextudio==1.8.6.dev0
 tensorboard==2.1.1
-tensorflow-gpu==2.1.0
+tensorflow-gpu==2.4.0
 tensorflow-gpu-estimator==2.1.0
 termcolor==1.1.0
 terminado==0.8.3
