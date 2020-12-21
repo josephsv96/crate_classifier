@@ -3,7 +3,7 @@ from tqdm import tqdm
 
 
 # Local Modules
-import pkg_1a
+from modules import pkg_1a
 from utils import load_json
 from utils import read_cmp
 from segmap_v2 import SegmentaionMap

@@ -1,5 +1,5 @@
 from pathlib import Path
-from utilities import create_output_folder, read_image, write_image
+from utils import create_output_folder, read_image, write_image
 
 working_dir = Path(input("Enter path of image folder: "))
 output_dir = create_output_folder(working_dir)

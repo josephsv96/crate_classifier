@@ -4,7 +4,7 @@ Assumes img_file and ann_file follow naming conventions; see README.md
 from pathlib import Path
 
 try:
-    from pkg_1a import DataChecker
+    from modules.pkg_1a import DataChecker
     from utils import load_json
 
 except ImportError as error:

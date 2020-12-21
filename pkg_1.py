@@ -1,7 +1,7 @@
 # Local Modules
-import pkg_1a
-import pkg_1b
-import pkg_1c
+from modules import pkg_1a
+from modules import pkg_1b
+from modules import pkg_1c
 import statistics
 from utils import load_json
 
@@ -20,13 +20,13 @@ def main():
     # pkg_1a
     pkg_1a_obj = pkg_1a.DataChecker(PKG_1_PARAMS["src_dir"],
                                     PKG_1_PARAMS["num_exp"])
-    pkg_1a_obj.logging()
+    # pkg_1a_obj.logging()
 
     # pkg_1b
     pkg_1b_obj = pkg_1b.DataSorter(pkg_1a_obj.img_paths,
                                    pkg_1a_obj.ann_paths,
                                    PKG_1_PARAMS)
-    pkg_1b_obj.logging()
+    # pkg_1b_obj.logging()
 
     # Generating augmented data
     pkg_1c_obj = pkg_1c.AugDataGenerator(pkg_1b_obj.image_db,

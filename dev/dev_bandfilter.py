@@ -3,9 +3,9 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utilities import load_npy
+from utils import load_npy
 from postprocessing import BandPass
-from utilities import get_custom_cmap
+from utils import get_custom_cmap
 
 mod_2_net_out = load_npy("mod_2_ResNet18_46k_predictions.npy")
 CMAP = get_custom_cmap()

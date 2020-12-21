@@ -77,6 +77,13 @@
 
 ## Development: instructions on how to expand the code and add new value to the software
 
+1. Develop the moudules within `packages/`. They should be run from the parent directory `crate_classifier/`, using the `-m` flag.
+
+```bash
+# Example
+python -m modules/pkg_1a
+```
+
 ## Additional: Lecture and more about the topic
 
 ## Contact: possibility to contact administrators of the project

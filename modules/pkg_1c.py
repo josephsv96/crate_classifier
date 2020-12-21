@@ -1,8 +1,8 @@
 from pathlib import Path
 
 # Local Modules
-import pkg_1a
-import pkg_1b
+from modules import pkg_1a
+from modules import pkg_1b
 from augmentation import Augmenter
 from utils import load_json
 from utils import save_npy_v2
