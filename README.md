@@ -49,9 +49,29 @@
 
 ## Installation: instructions on how to install the environment or software
 
-1. Prerequisites: software or knowledge that is necessary for the project to run
-2. Installation: links and code for installing software
-3. Instructions: detailed explanation on how to setup configs etc. for first time use
+1. Prerequisites: Python 3.7, NVIDIA GPU (with compute capability >= 7.5)
+2. Installation: Install `requirements.txt` into a new python environment as follows:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Instructions:
+   Create a new environment using [conda](https://docs.conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html#creating-an-environment-with-commands) or [virturalenv](https://packaging.python.org/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment). Using either works, although conda is recommended.
+
+   1. For conda, we can create a new environment and install all requirements.
+
+    ```bash
+    conda env create environment.yml
+    ```
+
+   2. For virtualenv, create and activate the environment, then install from requirements.txt.
+
+    ```bash
+    virtualenv crate_classifier     # creating new env
+    mypthon\Scripts\activate        # activate env
+    pip install -r requirements.txt
+    ```
 
 ## Documentation: detailed explanation of important things. (! don't forget to add comments to your code)
 

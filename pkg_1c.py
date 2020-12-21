@@ -1,16 +1,13 @@
-
 from pathlib import Path
 
 # Local Modules
 import pkg_1a
 import pkg_1b
-import statistics
 from augmentation import Augmenter
 from utils import load_json
 from utils import save_npy_v2
 from utils import get_timestamp
 # from uitls import get_custom_cmap
-# from uitl import get_custom_cmap
 # from preprocessing import get_dataset
 
 
@@ -119,9 +116,6 @@ def main():
     pkg_1b_obj = pkg_1b.DataSorter(pkg_1a_obj.img_paths,
                                    pkg_1a_obj.ann_paths,
                                    PKG_1_PARAMS)
-
-    # Saving statistics to outdir
-    statistics.class_dist_from_db(pkg_1b_obj.annot_db)
 
     # Generating augmented data
     pkg_1c_obj = AugDataGenerator(pkg_1b_obj.image_db,
