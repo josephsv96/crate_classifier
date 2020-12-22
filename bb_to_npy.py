@@ -3,7 +3,7 @@ from math import ceil
 from pathlib import Path
 import cv2
 
-from utilities import load_txt, save_npy_v2, sort_path
+from utils import load_txt, save_npy_v2, sort_path
 
 
 def bb_to_npy(img_file, label):

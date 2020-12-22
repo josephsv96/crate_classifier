@@ -4,7 +4,7 @@ To make a dataset from images
 import numpy as np
 from pathlib import Path
 from tqdm import tqdm
-from utilities import save_npy_v2, sort_path, resize_arr, read_image, load_npy
+from utils import save_npy_v2, sort_path, resize_arr, read_image, load_npy
 
 
 def main():

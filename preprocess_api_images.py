@@ -1,9 +1,12 @@
 from pathlib import Path
 from utils import create_output_folder, read_image, write_image
 
-working_dir = Path(input("Enter path of image folder: "))
-output_dir = create_output_folder(working_dir)
-print(output_dir)
+
+def get_working_dir(working_dir):
+    working_dir = Path(input("Enter path of image folder: "))
+    output_dir = create_output_folder(working_dir)
+    print(output_dir)
+    return working_dir, output_dir
 
 
 def process_api_images(working_dir, output_dir):
@@ -23,6 +26,7 @@ def process_api_images(working_dir, output_dir):
 
 
 def main():
+    working_dir, output_dir = get_working_dir()
     process_api_images(working_dir, output_dir)
 
 
