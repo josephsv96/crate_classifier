@@ -149,9 +149,12 @@
 <span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">create_output_folder</span><span class="p">,</span> <span class="n">read_image</span><span class="p">,</span> <span class="n">write_image</span>
 
-<span class="n">working_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter path of image folder: &quot;</span><span class="p">))</span>
-<span class="n">output_dir</span> <span class="o">=</span> <span class="n">create_output_folder</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+
+<div class="viewcode-block" id="get_working_dir"><a class="viewcode-back" href="../preprocess_api_images.html#preprocess_api_images.get_working_dir">[docs]</a><span class="k">def</span> <span class="nf">get_working_dir</span><span class="p">(</span><span class="n">working_dir</span><span class="p">):</span>
+    <span class="n">working_dir</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter path of image folder: &quot;</span><span class="p">))</span>
+    <span class="n">output_dir</span> <span class="o">=</span> <span class="n">create_output_folder</span><span class="p">(</span><span class="n">working_dir</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">output_dir</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">working_dir</span><span class="p">,</span> <span class="n">output_dir</span></div>
 
 
 <div class="viewcode-block" id="process_api_images"><a class="viewcode-back" href="../preprocess_api_images.html#preprocess_api_images.process_api_images">[docs]</a><span class="k">def</span> <span class="nf">process_api_images</span><span class="p">(</span><span class="n">working_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">):</span>
@@ -171,6 +174,7 @@
 
 
 <div class="viewcode-block" id="main"><a class="viewcode-back" href="../preprocess_api_images.html#preprocess_api_images.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">working_dir</span><span class="p">,</span> <span class="n">output_dir</span> <span class="o">=</span> <span class="n">get_working_dir</span><span class="p">()</span>
     <span class="n">process_api_images</span><span class="p">(</span><span class="n">working_dir</span><span class="p">,</span> <span class="n">output_dir</span><span class="p">)</span></div>
 
 
