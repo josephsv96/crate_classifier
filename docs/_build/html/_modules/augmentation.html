@@ -1,0 +1,437 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>augmentation &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">crate_classifier</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>augmentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for augmentation</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Dependencies</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">imgaug</span> <span class="kn">import</span> <span class="n">augmenters</span> <span class="k">as</span> <span class="n">iaa</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+
+<span class="c1"># Local Modules</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">create_output_folder</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">save_npy_v2</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">read_cmp</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_timestamp</span>
+
+
+<div class="viewcode-block" id="Augmenter"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter">[docs]</a><span class="k">class</span> <span class="nc">Augmenter</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Class load image sets at different exposures and their annotations</span>
+<span class="sd">    to generate augmented images from them.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">PARAMS</span><span class="p">,</span> <span class="n">img_paths</span><span class="p">,</span> <span class="n">ann_paths</span><span class="p">,</span> <span class="n">out_dir</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_paths</span> <span class="o">=</span> <span class="n">img_paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ann_paths</span> <span class="o">=</span> <span class="n">ann_paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">src_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">src_w</span> <span class="o">=</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;img_src_shape&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span> <span class="o">=</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;net_in_shape&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span> <span class="o">=</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;num_exp&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_img</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_paths</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">AUG_CONFIG</span> <span class="o">=</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;augmentation&quot;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">GAUSS_CONFIG</span> <span class="o">=</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;guassian&quot;</span><span class="p">]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="n">out_dir</span>
+
+        <span class="k">if</span> <span class="n">out_dir</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">out_path</span> <span class="o">=</span> <span class="n">create_output_folder</span><span class="p">(</span><span class="n">Path</span><span class="o">.</span><span class="n">cwd</span><span class="p">(),</span>
+                                            <span class="n">folder_name</span><span class="o">=</span><span class="s2">&quot;output_&quot;</span><span class="p">)</span>
+
+            <span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span> <span class="o">=</span> <span class="s2">&quot;/&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">out_path</span><span class="p">)</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\\</span><span class="s2">&quot;</span><span class="p">)</span>
+                                    <span class="p">)</span> <span class="o">+</span> <span class="s2">&quot;/&quot;</span> <span class="o">+</span> <span class="n">get_timestamp</span><span class="p">()</span>
+            <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">))</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+            <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;images&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+            <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;npy_images&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+            <span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="p">)</span> <span class="o">/</span> <span class="s2">&quot;npy_annots&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">mkdir</span><span class="p">()</span>
+
+<div class="viewcode-block" id="Augmenter.get_augmenters"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.get_augmenters">[docs]</a>    <span class="o">@</span> <span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_augmenters</span><span class="p">(</span><span class="n">num_gen</span><span class="p">,</span> <span class="n">aug_config</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Generate a list of deterministic augmenters. num_gen = 0 or None</span>
+<span class="sd">        will return a single Augmenter</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_gen (int): Number of augmenters</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            list: List of Augmeters</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">seq_img</span> <span class="o">=</span> <span class="n">iaa</span><span class="o">.</span><span class="n">Sequential</span><span class="p">([</span><span class="n">iaa</span><span class="o">.</span><span class="n">Fliplr</span><span class="p">(</span><span class="mf">0.5</span><span class="p">),</span>
+                                  <span class="n">iaa</span><span class="o">.</span><span class="n">Affine</span><span class="p">(</span><span class="n">scale</span><span class="o">=</span><span class="n">aug_config</span><span class="p">[</span><span class="s2">&quot;scale&quot;</span><span class="p">],</span>
+                                             <span class="n">translate_percent</span><span class="o">=</span><span class="p">{</span>
+                                      <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">aug_config</span><span class="p">[</span><span class="s2">&quot;trans_x&quot;</span><span class="p">],</span>
+                                      <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">aug_config</span><span class="p">[</span><span class="s2">&quot;trans_y&quot;</span><span class="p">]},</span>
+            <span class="n">rotate</span><span class="o">=</span><span class="n">aug_config</span><span class="p">[</span><span class="s2">&quot;rotate&quot;</span><span class="p">],</span>
+            <span class="n">shear</span><span class="o">=</span><span class="n">aug_config</span><span class="p">[</span><span class="s2">&quot;shear&quot;</span><span class="p">]</span>
+        <span class="p">)],</span>
+            <span class="n">random_order</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+
+        <span class="n">seq_img_list</span> <span class="o">=</span> <span class="n">seq_img</span><span class="o">.</span><span class="n">to_deterministic</span><span class="p">(</span><span class="n">n</span><span class="o">=</span><span class="n">num_gen</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">seq_img_list</span></div>
+
+<div class="viewcode-block" id="Augmenter.to_square"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.to_square">[docs]</a>    <span class="o">@</span> <span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">to_square</span><span class="p">(</span><span class="n">img_instance</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Converts a wide image to square image, without loosing resolution.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_instance (numpy.array): Image in wide resolution</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Squared image</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">3</span><span class="p">:</span>
+            <span class="n">img_instance</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">expand_dims</span><span class="p">(</span><span class="n">img_instance</span><span class="p">,</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">img_sq</span> <span class="o">=</span> <span class="n">img_instance</span><span class="p">[:,</span> <span class="nb">int</span><span class="p">(</span><span class="n">mid</span><span class="o">-</span><span class="n">dim</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="n">dim</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">:]</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">dim</span> <span class="o">=</span> <span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">mid</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">img_instance</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+            <span class="n">img_sq</span> <span class="o">=</span> <span class="n">img_instance</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">mid</span><span class="o">-</span><span class="n">dim</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span><span class="nb">int</span><span class="p">(</span><span class="n">mid</span><span class="o">+</span><span class="n">dim</span><span class="o">/</span><span class="mi">2</span><span class="p">),</span> <span class="p">:,</span> <span class="p">:]</span>
+
+        <span class="k">return</span> <span class="n">img_sq</span></div>
+
+<div class="viewcode-block" id="Augmenter.gaussian_blur"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.gaussian_blur">[docs]</a>    <span class="o">@</span> <span class="nb">staticmethod</span>
+    <span class="k">def</span> <span class="nf">gaussian_blur</span><span class="p">(</span><span class="n">img_instance</span><span class="p">,</span> <span class="n">gauss_config</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply Gaussian filter to an image instance</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_instance (numpy.array): Input image array</span>
+<span class="sd">            gauss_config (dict): Filter parameters</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Blurred image output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img_instance</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">GaussianBlur</span><span class="p">(</span><span class="n">img_instance</span><span class="p">,</span>
+                                        <span class="n">ksize</span><span class="o">=</span><span class="nb">tuple</span><span class="p">(</span><span class="n">gauss_config</span><span class="p">[</span><span class="s2">&quot;ksize&quot;</span><span class="p">]),</span>
+                                        <span class="n">sigmaX</span><span class="o">=</span><span class="n">gauss_config</span><span class="p">[</span><span class="s2">&quot;sigma&quot;</span><span class="p">],</span>
+                                        <span class="n">borderType</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">BORDER_DEFAULT</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">img_instance</span></div>
+
+<div class="viewcode-block" id="Augmenter.get_img_augs"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.get_img_augs">[docs]</a>    <span class="k">def</span> <span class="nf">get_img_augs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_files</span><span class="p">,</span> <span class="n">augmenter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply augmenter to img_files array.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            img_files (numpy.array): Image set; (height, width, num_exp * 3)</span>
+<span class="sd">            augmenter (imgaug.augmenters.meta.Augmenter): Augmenter</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Augmented image set of (out_h, out_w, num_exp * 3)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img_aug</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="o">*</span><span class="mi">3</span><span class="p">],</span>
+                           <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">):</span>
+            <span class="n">image_instance</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">imread</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">img_files</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+                                        <span class="n">cv2</span><span class="o">.</span><span class="n">IMREAD_UNCHANGED</span><span class="p">)</span>
+
+            <span class="n">aug_img</span> <span class="o">=</span> <span class="n">augmenter</span><span class="o">.</span><span class="n">augment_image</span><span class="p">(</span><span class="n">image_instance</span><span class="p">)</span>
+
+            <span class="n">img_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_square</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">gaussian_blur</span><span class="p">(</span><span class="n">aug_img</span><span class="p">,</span>
+                                                           <span class="bp">self</span><span class="o">.</span><span class="n">GAUSS_CONFIG</span><span class="p">))</span>
+            <span class="n">img_buffer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">img_buffer</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">),</span>
+                                    <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_NEAREST</span><span class="p">)</span>
+            <span class="n">img_aug</span><span class="p">[:,</span> <span class="p">:,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="mi">3</span><span class="p">]</span> <span class="o">=</span> <span class="n">img_buffer</span>
+            <span class="n">j</span> <span class="o">+=</span> <span class="mi">3</span>
+
+        <span class="k">return</span> <span class="n">img_aug</span></div>
+
+<div class="viewcode-block" id="Augmenter.get_ann_augs"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.get_ann_augs">[docs]</a>    <span class="k">def</span> <span class="nf">get_ann_augs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annot</span><span class="p">,</span> <span class="n">augmenter</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Apply augmenter to annotation array.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            annot (numpy.array): Annotation; (height, width)</span>
+<span class="sd">            augmenter (imgaug.augmenters.meta.Augmenter): Augmenter</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Augmented annotation set of (out_h, out_w, 1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">annot_aug</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">([</span><span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+                             <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="n">aug_img</span> <span class="o">=</span> <span class="n">augmenter</span><span class="o">.</span><span class="n">augment_image</span><span class="p">(</span><span class="n">annot</span><span class="p">[:,</span> <span class="p">:])</span>
+        <span class="n">ann_buffer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">to_square</span><span class="p">(</span><span class="n">aug_img</span><span class="p">)</span>
+        <span class="n">annot_aug</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">resize</span><span class="p">(</span><span class="n">ann_buffer</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">),</span>
+                                        <span class="n">interpolation</span><span class="o">=</span><span class="n">cv2</span><span class="o">.</span><span class="n">INTER_NEAREST</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">annot_aug</span></div>
+
+<div class="viewcode-block" id="Augmenter.generate_aug"><a class="viewcode-back" href="../augmentation.html#augmentation.Augmenter.generate_aug">[docs]</a>    <span class="k">def</span> <span class="nf">generate_aug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_gen</span><span class="p">,</span> <span class="n">r_state</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">write_img</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">start_index</span><span class="o">=</span><span class="mi">0</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;To generate augmented image and annotation sets.</span>
+<span class="sd">        Same augmentation is applied to a set of images and its annotation.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            num_gen (int): Number of images to be generated.</span>
+<span class="sd">            r_state (int, optional): Random state to select image set.</span>
+<span class="sd">            Defaults to 1.</span>
+<span class="sd">            write_img (bool, optional): Flag to write images to output folder.</span>
+<span class="sd">            Defaults to False.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            numpy.array: Augmented annotation set of (out_h, out_w, num_exp*3)</span>
+<span class="sd">            numpy.array: Augmented annotation set of (out_h, out_w, 1)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">img_aug_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">num_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="o">*</span><span class="mi">3</span><span class="p">],</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="n">ann_aug_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span>
+            <span class="p">[</span><span class="n">num_gen</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">out_w</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span>
+            <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="c1"># Generating augmenters</span>
+        <span class="n">augs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_augmenters</span><span class="p">(</span><span class="n">num_gen</span><span class="o">=</span><span class="n">num_gen</span><span class="p">,</span> <span class="n">aug_config</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">AUG_CONFIG</span><span class="p">)</span>
+
+        <span class="c1"># Select image and corresponding annotation randomly</span>
+        <span class="c1"># for i in range(num_gen):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_gen</span><span class="p">)):</span>
+
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">i</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">r_state</span><span class="p">))</span>
+            <span class="n">random_index</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_img</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+
+            <span class="c1"># Select image</span>
+            <span class="n">img_index</span> <span class="o">=</span> <span class="n">random_index</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span>
+            <span class="n">img_files</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">img_paths</span><span class="p">[</span><span class="n">img_index</span><span class="p">:</span><span class="n">img_index</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">]</span>
+
+            <span class="c1"># Select annotation</span>
+            <span class="n">ann_file</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ann_paths</span><span class="p">[</span><span class="n">random_index</span><span class="p">]</span>
+
+            <span class="c1"># Image Generation</span>
+            <span class="c1"># (i,128,128,9) = f(random_index,964,1292,9)</span>
+            <span class="n">img_aug_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_img_augs</span><span class="p">(</span><span class="n">img_files</span><span class="p">,</span>
+                                                        <span class="n">augmenter</span><span class="o">=</span><span class="n">augs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># Annot Generation</span>
+            <span class="c1"># (i,128,128,1) = f(random_index,964,1292,1)</span>
+            <span class="n">annot_instance</span> <span class="o">=</span> <span class="n">read_cmp</span><span class="p">(</span><span class="n">ann_file</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">src_h</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">src_w</span><span class="p">))</span>
+            <span class="n">ann_aug_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_ann_augs</span><span class="p">(</span><span class="n">annot_instance</span><span class="p">,</span>
+                                                        <span class="n">augmenter</span><span class="o">=</span><span class="n">augs</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+
+            <span class="c1"># Saving images and masks</span>
+            <span class="k">if</span> <span class="n">write_img</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
+                <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="n">exp_names</span> <span class="o">=</span> <span class="p">[</span><span class="nb">chr</span><span class="p">(</span><span class="nb">ord</span><span class="p">(</span><span class="s1">&#39;`&#39;</span><span class="p">)</span><span class="o">+</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">)]</span>
+
+                <span class="c1"># writing images to .bmp</span>
+                <span class="k">for</span> <span class="n">_</span><span class="p">,</span> <span class="n">ch</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">),</span> <span class="n">exp_names</span><span class="p">):</span>
+                    <span class="n">img_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;img_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">start_index</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2">_</span><span class="si">{</span><span class="n">ch</span><span class="si">}</span><span class="s2">.bmp&quot;</span>
+                    <span class="n">img_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/images/</span><span class="si">{</span><span class="n">img_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                    <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="n">img_file</span><span class="p">,</span>
+                                <span class="n">img_aug_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="n">j</span><span class="p">:</span><span class="n">j</span><span class="o">+</span><span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span><span class="p">])</span>
+                    <span class="n">j</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_exp</span>
+
+                <span class="c1"># writing image set to .npy</span>
+                <span class="n">img_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;img_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">start_index</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">img_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/npy_images/</span><span class="si">{</span><span class="n">img_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">save_npy_v2</span><span class="p">(</span><span class="n">img_aug_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">img_file</span><span class="p">)</span>
+
+                <span class="c1"># writing annotation to .npy</span>
+                <span class="n">ann_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;ann_</span><span class="si">{</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="n">start_index</span><span class="p">)</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">ann_file</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">out_dir</span><span class="si">}</span><span class="s2">/npy_annots/</span><span class="si">{</span><span class="n">ann_name</span><span class="si">}</span><span class="s2">&quot;</span>
+                <span class="n">save_npy_v2</span><span class="p">(</span><span class="n">ann_aug_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:],</span> <span class="n">ann_file</span><span class="p">)</span>
+
+                <span class="c1"># !WORK-IN-PROGRESS</span>
+                <span class="c1"># writing annotation to .cmp</span>
+                <span class="c1"># write_cmp(ann_file, ann_aug_arr[i, :, :, :])</span>
+
+        <span class="k">return</span> <span class="n">img_aug_arr</span><span class="p">,</span> <span class="n">ann_aug_arr</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

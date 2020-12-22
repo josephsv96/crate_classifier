@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sliding module &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="statistics module" href="statistics.html" />
+    <link rel="prev" title="segmap_v2 module" href="segmap_v2.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+      <li>sliding module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sliding.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-sliding">
+<span id="sliding-module"></span><h1>sliding module<a class="headerlink" href="#module-sliding" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="sliding.SlidingWindow">
+<em class="property">class </em><code class="sig-prename descclassname">sliding.</code><code class="sig-name descname">SlidingWindow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em>, <em class="sig-param"><span class="n">w_scale</span></em>, <em class="sig-param"><span class="n">PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>docstring</p>
+<dl class="py method">
+<dt id="sliding.SlidingWindow.Slide">
+<code class="sig-name descname">Slide</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.Slide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.Slide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves a sliding window over the annot_arr of size w_dim
+Slices are updated into sliced_arr</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sliding.SlidingWindow.get_params">
+<em class="property">static </em><code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N_dim</span></em>, <em class="sig-param"><span class="n">w_scale</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a feasible sliding window scale and number of iterations</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sliding.SlidingWindow.image_overlay">
+<code class="sig-name descname">image_overlay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_inst</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.image_overlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.image_overlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="sliding.SlidingWindow.show_slices">
+<code class="sig-name descname">show_slices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_class</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.show_slices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.show_slices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints all slices generated using the Sliding window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sliding.SlidingWindow.show_slices_overlay">
+<code class="sig-name descname">show_slices_overlay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_class</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.show_slices_overlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.show_slices_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints all slices generated using the Sliding window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="sliding.SlidingWindow.sort_img_arr_by_class">
+<code class="sig-name descname">sort_img_arr_by_class</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/sliding.html#SlidingWindow.sort_img_arr_by_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#sliding.SlidingWindow.sort_img_arr_by_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="statistics.html" class="btn btn-neutral float-right" title="statistics module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="segmap_v2.html" class="btn btn-neutral float-left" title="segmap_v2 module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

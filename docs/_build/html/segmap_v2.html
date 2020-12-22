@@ -1,0 +1,286 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>segmap_v2 module &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="sliding module" href="sliding.html" />
+    <link rel="prev" title="segmap module" href="segmap.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">segmap_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sliding.html">sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+      <li>segmap_v2 module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/segmap_v2.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-segmap_v2">
+<span id="segmap-v2-module"></span><h1>segmap_v2 module<a class="headerlink" href="#module-segmap_v2" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="segmap_v2.SegmentaionMap">
+<em class="property">class </em><code class="sig-prename descclassname">segmap_v2.</code><code class="sig-name descname">SegmentaionMap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_inst</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">bg_class_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.activation_density">
+<code class="sig-name descname">activation_density</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.activation_density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.activation_density" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.arr_to_categorical">
+<code class="sig-name descname">arr_to_categorical</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.arr_to_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.arr_to_categorical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.batch_dist">
+<code class="sig-name descname">batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em>, <em class="sig-param"><span class="n">low_cutoff</span><span class="o">=</span><span class="default_value">0.05</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.class_dist">
+<code class="sig-name descname">class_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.get_norm_values">
+<code class="sig-name descname">get_norm_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_values</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.get_norm_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.get_norm_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.imshow_prediciton">
+<code class="sig-name descname">imshow_prediciton</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.imshow_prediciton"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.imshow_prediciton" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.show_batch_dist">
+<code class="sig-name descname">show_batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">show_bg</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">max_y_limit</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.show_batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.show_batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="segmap_v2.SegmentaionMap.show_class_dist">
+<code class="sig-name descname">show_class_dist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/segmap_v2.html#SegmentaionMap.show_class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#segmap_v2.SegmentaionMap.show_class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="sliding.html" class="btn btn-neutral float-right" title="sliding module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="segmap.html" class="btn btn-neutral float-left" title="segmap module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

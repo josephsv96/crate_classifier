@@ -1,0 +1,373 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sliding &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">crate_classifier</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>sliding</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sliding</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="kn">from</span> <span class="nn">segmap_v2</span> <span class="kn">import</span> <span class="n">SegmentaionMap</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">get_custom_cmap</span><span class="p">,</span> <span class="n">bgr_to_rgb_img</span>
+
+
+<div class="viewcode-block" id="SlidingWindow"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow">[docs]</a><span class="k">class</span> <span class="nc">SlidingWindow</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    docstring</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+<div class="viewcode-block" id="SlidingWindow.get_params"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.get_params">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_params</span><span class="p">(</span><span class="n">N_dim</span><span class="p">,</span> <span class="n">w_scale</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns a feasible sliding window scale and number of iterations</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">w_limit</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">N_dim</span><span class="p">)</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+        <span class="c1"># Possible scales</span>
+        <span class="n">w_scale_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_limit</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Possible iterations</span>
+        <span class="n">w_iter_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">w_limit</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+        <span class="c1"># Checking validity of input scale</span>
+        <span class="k">if</span> <span class="n">w_scale</span> <span class="o">&gt;</span> <span class="n">w_limit</span> <span class="ow">or</span> <span class="n">w_scale</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;w_scale should be non-zero and meet the required condition&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Condition: 1 &lt;= w_scale &lt;= </span><span class="si">{</span><span class="n">w_limit</span><span class="si">}</span><span class="s2"> for N_dim = </span><span class="si">{</span><span class="n">N_dim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Using default, w_scale: </span><span class="si">{</span><span class="n">w_scale_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">w_limit</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="n">w_scale</span> <span class="o">=</span> <span class="n">w_scale_list</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">w_limit</span><span class="o">/</span><span class="mi">2</span><span class="p">)]</span>
+
+        <span class="n">w_iter</span> <span class="o">=</span> <span class="n">w_iter_list</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">w_scale_list</span> <span class="o">==</span> <span class="n">w_scale</span><span class="p">)[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]]</span>
+
+        <span class="c1"># Missed pixels</span>
+        <span class="n">uncovered_px</span> <span class="o">=</span> <span class="n">N_dim</span> <span class="o">%</span> <span class="n">w_scale</span>
+        <span class="k">if</span> <span class="n">uncovered_px</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sliding window not able to capture </span><span class="si">{</span><span class="n">uncovered_px</span><span class="si">}</span><span class="s2">px&quot;</span><span class="p">)</span>
+
+        <span class="c1"># # DEBUG</span>
+        <span class="c1"># print(f&quot;w_scale_list: {w_scale_list}&quot;)</span>
+        <span class="c1"># print(f&quot;w_iter_list: {w_iter_list}&quot;)</span>
+        <span class="c1"># print(f&quot;w_scale: {w_scale}&quot;)</span>
+        <span class="c1"># print(f&quot;w_iter: {w_iter}&quot;)</span>
+
+        <span class="k">return</span> <span class="n">w_scale</span><span class="p">,</span> <span class="n">w_iter</span></div>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">annot_arr</span><span class="p">,</span> <span class="n">w_scale</span><span class="p">,</span> <span class="n">PARAMS</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annot_arr</span> <span class="o">=</span> <span class="n">annot_arr</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">=</span> <span class="n">annot_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_scale</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_params</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_dim</span><span class="p">,</span> <span class="n">w_scale</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_scale</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w_stride</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="p">,</span>
+                                    <span class="n">annot_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]))</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_indices_x</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">window_indices_y</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">PARAMS</span> <span class="o">=</span> <span class="n">PARAMS</span>
+
+        <span class="c1"># DEBUG</span>
+        <span class="c1"># print(f&quot;annot_arr.shape: {annot_arr.shape}&quot;)</span>
+        <span class="c1"># print(f&quot;N_dim: {self.N_dim}&quot;)</span>
+        <span class="c1"># print(f&quot;w_dim: {self.w_dim}&quot;)</span>
+        <span class="c1"># print(f&quot;w_stride: {self.w_stride}&quot;)</span>
+        <span class="c1"># print(f&quot;sliced_arr.shape: {self.sliced_arr.shape}&quot;)</span>
+
+<div class="viewcode-block" id="SlidingWindow.Slide"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.Slide">[docs]</a>    <span class="k">def</span> <span class="nf">Slide</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Moves a sliding window over the annot_arr of size w_dim</span>
+<span class="sd">        Slices are updated into sliced_arr</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">power</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">))</span>
+
+        <span class="n">x_1</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">sec_no</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># Sector number (max =&gt; w_iter)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">):</span>
+            <span class="n">y_1</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">):</span>
+                <span class="n">x_2</span> <span class="o">=</span> <span class="n">x_1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span>
+                <span class="n">y_2</span> <span class="o">=</span> <span class="n">y_1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span>
+
+                <span class="c1"># print([x_1, x_2], [y_1, y_2])</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="p">[</span><span class="n">sec_no</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">annot_arr</span><span class="p">[</span><span class="n">x_1</span><span class="p">:</span><span class="n">x_2</span><span class="p">,</span>
+                                                                  <span class="n">y_1</span><span class="p">:</span><span class="n">y_2</span><span class="p">,</span> <span class="p">:]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">window_indices_x</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">window_indices_y</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">y_2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>
+
+                <span class="n">y_1</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_stride</span>
+                <span class="n">sec_no</span> <span class="o">+=</span> <span class="mi">1</span>
+
+            <span class="n">x_1</span> <span class="o">+=</span> <span class="bp">self</span><span class="o">.</span><span class="n">w_stride</span></div>
+
+<div class="viewcode-block" id="SlidingWindow.show_slices"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.show_slices">[docs]</a>    <span class="k">def</span> <span class="nf">show_slices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_class</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints all slices generated using the Sliding window</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">CMAP</span> <span class="o">=</span> <span class="n">get_custom_cmap</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Slide</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">im_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">,</span> <span class="n">im_num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="p">[</span><span class="n">im_num</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">CMAP</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="p">[</span><span class="n">im_num</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">],</span> <span class="n">cmap</span><span class="o">=</span><span class="n">CMAP</span><span class="p">)</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_class</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SlidingWindow.sort_img_arr_by_class"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.sort_img_arr_by_class">[docs]</a>    <span class="k">def</span> <span class="nf">sort_img_arr_by_class</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">ann_arr</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span>
+        <span class="n">sector_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sec_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ann_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+        <span class="n">sec_db</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">sector_name</span><span class="p">}</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ann_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+            <span class="n">annot</span> <span class="o">=</span> <span class="n">ann_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">segmap_obj</span> <span class="o">=</span> <span class="n">SegmentaionMap</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;num_classes&quot;</span><span class="p">],</span>
+                                        <span class="bp">self</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;bg_class_id&quot;</span><span class="p">])</span>
+            <span class="c1"># fg_cls / activated_px, bg_cls/ total_px</span>
+            <span class="n">cls_den_arr</span> <span class="o">=</span> <span class="n">segmap_obj</span><span class="o">.</span><span class="n">activation_density</span><span class="p">()</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">detected_cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">cls_den_arr</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;det_thres&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="c1"># Pushing images with less than threshold to or first id</span>
+                <span class="c1"># or last id</span>
+                <span class="n">detected_cls</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">sec_db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sec_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">detected_cls</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">sec_db</span><span class="o">.</span><span class="n">values</span><span class="p">())</span></div>
+
+<div class="viewcode-block" id="SlidingWindow.show_slices_overlay"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.show_slices_overlay">[docs]</a>    <span class="k">def</span> <span class="nf">show_slices_overlay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_class</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints all slices generated using the Sliding window</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sector_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_img_arr_by_class</span><span class="p">()</span>
+        <span class="n">CMAP</span> <span class="o">=</span> <span class="n">get_custom_cmap</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Slide</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">im_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">xy_iter</span><span class="p">,</span> <span class="n">im_num</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="p">[</span><span class="n">im_num</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_class</span><span class="p">])</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">([</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span> <span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_dim</span><span class="o">/</span><span class="mi">2</span><span class="p">)],</span>
+                            <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                            <span class="n">color</span><span class="o">=</span><span class="n">CMAP</span><span class="p">(</span><span class="n">sector_class</span><span class="p">[</span><span class="n">im_num</span><span class="p">]),</span>
+                            <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sliced_arr</span><span class="p">[</span><span class="n">im_num</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:</span><span class="mi">3</span><span class="p">])</span>
+                <span class="n">plt</span><span class="o">.</span><span class="n">clim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">num_class</span><span class="p">])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="SlidingWindow.image_overlay"><a class="viewcode-back" href="../sliding.html#sliding.SlidingWindow.image_overlay">[docs]</a>    <span class="k">def</span> <span class="nf">image_overlay</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image_inst</span><span class="p">):</span>
+        <span class="n">sector_class</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort_img_arr_by_class</span><span class="p">()</span>
+        <span class="n">CMAP</span> <span class="o">=</span> <span class="n">get_custom_cmap</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">Slide</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">bgr_to_rgb_img</span><span class="p">(</span><span class="n">image_inst</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">im_num</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">w_iter</span><span class="p">):</span>
+            <span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">window_indices_x</span><span class="p">[</span><span class="n">im_num</span><span class="p">],</span>
+                        <span class="bp">self</span><span class="o">.</span><span class="n">window_indices_y</span><span class="p">[</span><span class="n">im_num</span><span class="p">],</span>
+                        <span class="n">s</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+                        <span class="n">color</span><span class="o">=</span><span class="n">CMAP</span><span class="p">(</span><span class="n">sector_class</span><span class="p">[</span><span class="n">im_num</span><span class="p">]),</span>
+                        <span class="n">marker</span><span class="o">=</span><span class="s2">&quot;s&quot;</span><span class="p">)</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">xticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">yticks</span><span class="p">([])</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+        <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

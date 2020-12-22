@@ -1,0 +1,402 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>tests package &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="train module" href="train.html" />
+    <link rel="prev" title="statistics module" href="statistics.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sliding.html">sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">tests package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test">tests.test module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_models">tests.test_models module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_pkg_1a">tests.test_pkg_1a module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_sliding">tests.test_sliding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+      <li>tests package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/tests.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tests-package">
+<h1>tests package<a class="headerlink" href="#tests-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tests.test">
+<span id="tests-test-module"></span><h2>tests.test module<a class="headerlink" href="#module-tests.test" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-tests.test_models">
+<span id="tests-test-models-module"></span><h2>tests.test_models module<a class="headerlink" href="#module-tests.test_models" title="Permalink to this headline">¶</a></h2>
+<p>Tests for models.
+Assumes img_file and ann_file follow naming conventions; see README.md</p>
+<dl class="py function">
+<dt id="tests.test_models.test_model_1">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_10">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_10</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_10"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_10" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_11">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_11</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_11"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_11" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_12">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_12</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_12"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_12" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_13">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_13</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_13"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_13" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_14">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_14</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_14"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_14" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_15">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_15</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_15"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_15" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_16">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_16</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_16"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_16" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_17">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_17</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_17"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_17" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_2">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_3">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_4">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_4</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_5">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_5</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_5"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_5" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_6">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_6</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_6"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_6" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_7">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_7</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_7"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_7" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_8">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_8</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_8"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_8" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_models.test_model_9">
+<code class="sig-prename descclassname">tests.test_models.</code><code class="sig-name descname">test_model_9</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_models.html#test_model_9"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_models.test_model_9" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-tests.test_pkg_1a">
+<span id="tests-test-pkg-1a-module"></span><h2>tests.test_pkg_1a module<a class="headerlink" href="#module-tests.test_pkg_1a" title="Permalink to this headline">¶</a></h2>
+<p>Tests for pkg_1a.
+Assumes img_file and ann_file follow naming conventions; see README.md</p>
+<dl class="py function">
+<dt id="tests.test_pkg_1a.chk_dir">
+<code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">chk_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#chk_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.chk_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>To check if the directory exists. Returns boolean</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_pkg_1a.load_params">
+<code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">load_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.load_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns source path of images and number of exposures</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_pkg_1a.test_data_checker_1">
+<code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">test_data_checker_1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#test_data_checker_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.test_data_checker_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_pkg_1a.test_data_checker_2">
+<code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">test_data_checker_2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#test_data_checker_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.test_data_checker_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-tests.test_sliding">
+<span id="tests-test-sliding-module"></span><h2>tests.test_sliding module<a class="headerlink" href="#module-tests.test_sliding" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="tests.test_sliding.img_init">
+<code class="sig-prename descclassname">tests.test_sliding.</code><code class="sig-name descname">img_init</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">h</span></em>, <em class="sig-param"><span class="n">w</span></em>, <em class="sig-param"><span class="n">depth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_sliding.html#img_init"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_sliding.img_init" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_sliding.test_model_1">
+<code class="sig-prename descclassname">tests.test_sliding.</code><code class="sig-name descname">test_model_1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_sliding.html#test_model_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_sliding.test_model_1" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_sliding.test_model_2">
+<code class="sig-prename descclassname">tests.test_sliding.</code><code class="sig-name descname">test_model_2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_sliding.html#test_model_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_sliding.test_model_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_sliding.test_model_3">
+<code class="sig-prename descclassname">tests.test_sliding.</code><code class="sig-name descname">test_model_3</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_sliding.html#test_model_3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_sliding.test_model_3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="tests.test_sliding.test_model_4">
+<code class="sig-prename descclassname">tests.test_sliding.</code><code class="sig-name descname">test_model_4</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_sliding.html#test_model_4"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_sliding.test_model_4" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-tests">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tests" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="train.html" class="btn btn-neutral float-right" title="train module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="statistics.html" class="btn btn-neutral float-left" title="statistics module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

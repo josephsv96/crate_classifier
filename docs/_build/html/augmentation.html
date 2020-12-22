@@ -1,0 +1,368 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>augmentation module &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="bb_to_npy module" href="bb_to_npy.html" />
+    <link rel="prev" title="crate_classifier" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">augmentation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sliding.html">sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+      <li>augmentation module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/augmentation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-augmentation">
+<span id="augmentation-module"></span><h1>augmentation module<a class="headerlink" href="#module-augmentation" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="augmentation.Augmenter">
+<em class="property">class </em><code class="sig-prename descclassname">augmentation.</code><code class="sig-name descname">Augmenter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PARAMS</span></em>, <em class="sig-param"><span class="n">img_paths</span></em>, <em class="sig-param"><span class="n">ann_paths</span></em>, <em class="sig-param"><span class="n">out_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class load image sets at different exposures and their annotations
+to generate augmented images from them.</p>
+<dl class="py method">
+<dt id="augmentation.Augmenter.gaussian_blur">
+<em class="property">static </em><code class="sig-name descname">gaussian_blur</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_instance</span></em>, <em class="sig-param"><span class="n">gauss_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.gaussian_blur"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.gaussian_blur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply Gaussian filter to an image instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_instance</strong> (<em>numpy.array</em>) – Input image array</p></li>
+<li><p><strong>gauss_config</strong> (<em>dict</em>) – Filter parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Blurred image output</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="augmentation.Augmenter.generate_aug">
+<code class="sig-name descname">generate_aug</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_gen</span></em>, <em class="sig-param"><span class="n">r_state</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">write_img</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">start_index</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.generate_aug"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.generate_aug" title="Permalink to this definition">¶</a></dt>
+<dd><p>To generate augmented image and annotation sets.
+Same augmentation is applied to a set of images and its annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_gen</strong> (<em>int</em>) – Number of images to be generated.</p></li>
+<li><p><strong>r_state</strong> (<em>int</em><em>, </em><em>optional</em>) – Random state to select image set.</p></li>
+<li><p><strong>to 1.</strong> (<em>Defaults</em>) – </p></li>
+<li><p><strong>write_img</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to write images to output folder.</p></li>
+<li><p><strong>to False.</strong> (<em>Defaults</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented annotation set of (out_h, out_w, num_exp*3)
+numpy.array: Augmented annotation set of (out_h, out_w, 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="augmentation.Augmenter.get_ann_augs">
+<code class="sig-name descname">get_ann_augs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot</span></em>, <em class="sig-param"><span class="n">augmenter</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.get_ann_augs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.get_ann_augs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply augmenter to annotation array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> (<em>numpy.array</em>) – Annotation; (height, width)</p></li>
+<li><p><strong>augmenter</strong> (<em>imgaug.augmenters.meta.Augmenter</em>) – Augmenter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented annotation set of (out_h, out_w, 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="augmentation.Augmenter.get_augmenters">
+<em class="property">static </em><code class="sig-name descname">get_augmenters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_gen</span></em>, <em class="sig-param"><span class="n">aug_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.get_augmenters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.get_augmenters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of deterministic augmenters. num_gen = 0 or None
+will return a single Augmenter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>num_gen</strong> (<em>int</em>) – Number of augmenters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of Augmeters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="augmentation.Augmenter.get_img_augs">
+<code class="sig-name descname">get_img_augs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_files</span></em>, <em class="sig-param"><span class="n">augmenter</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.get_img_augs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.get_img_augs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply augmenter to img_files array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_files</strong> (<em>numpy.array</em>) – Image set; (height, width, num_exp * 3)</p></li>
+<li><p><strong>augmenter</strong> (<em>imgaug.augmenters.meta.Augmenter</em>) – Augmenter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented image set of (out_h, out_w, num_exp * 3)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="augmentation.Augmenter.to_square">
+<em class="property">static </em><code class="sig-name descname">to_square</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/augmentation.html#Augmenter.to_square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#augmentation.Augmenter.to_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a wide image to square image, without loosing resolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img_instance</strong> (<em>numpy.array</em>) – Image in wide resolution</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Squared image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="bb_to_npy.html" class="btn btn-neutral float-right" title="bb_to_npy module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="crate_classifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
