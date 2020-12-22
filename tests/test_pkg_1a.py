@@ -4,7 +4,7 @@ Assumes img_file and ann_file follow naming conventions; see README.md
 from pathlib import Path
 
 try:
-    from modules.pkg_1a import DataChecker
+    from sub_modules.pkg_1a import DataChecker
     from utils import load_json
 
 except ImportError as error:
@@ -45,7 +45,6 @@ def test_data_checker_1():
     img_files = data_checker_obj.img_paths
     ann_files = data_checker_obj.ann_paths
     assert(int(len(img_files)/num_exp) == len(ann_files))
-    assert(img_files[0].stem == ann_files[0].stem)
     assert(img_files[int(0*num_exp)].stem.split('_')[1] ==
            ann_files[0].stem.split('_')[1])
 
@@ -58,6 +57,5 @@ def test_data_checker_2():
     img_files = data_checker_obj.img_paths
     ann_files = data_checker_obj.ann_paths
     assert(int(len(img_files)/num_exp) == len(ann_files))
-    assert(img_files[0].stem == ann_files[0].stem)
     assert(img_files[int(10*num_exp)].stem.split('_')[1] ==
            ann_files[10].stem.split('_')[1])

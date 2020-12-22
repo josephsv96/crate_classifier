@@ -10,24 +10,24 @@ from data_loader import load_json, load_npy
 from preprocessing import img_preprocess, ann_preprocess
 from preprocessing import resize_arr, split_data, stack_exp
 from preprocessing import stack_exp_v2, ann_preprocess_v2
-from utilities import img_arr_to_gray
+from utils import img_arr_to_gray
 # import augmentation_dev as augmentation
 # import plotting
 # from train import train_model_1, train_model_2, train_model_1_v2
 
 # Models
 
-import model_14k as model_1    # baseline model
+from models import model_14k as model_1    # baseline model
 # VGG16 models
-import model_vgg16_24k as model_2
-import model_vgg16_34k as model_3
-import model_vgg16_47k as model_4
+from models import model_vgg16_24k as model_2
+from models import model_vgg16_34k as model_3
+from models import model_vgg16_47k as model_4
 # ResNet models
-import model_resnet18_34k as model_5
-import model_resnet18_46k as model_6
+from models import model_resnet18_34k as model_5
+from models import model_resnet18_46k as model_6
 # DenseNet models
-import model_densenet21_35k as model_7
-import model_densenet21_48k as model_8
+from models import model_densenet21_35k as model_7
+from models import model_densenet21_48k as model_8
 
 
 # Colormap object for custom colours

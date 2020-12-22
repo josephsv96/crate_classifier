@@ -152,7 +152,7 @@
 <span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">modules.pkg_1a</span> <span class="kn">import</span> <span class="n">DataChecker</span>
+    <span class="kn">from</span> <span class="nn">sub_modules.pkg_1a</span> <span class="kn">import</span> <span class="n">DataChecker</span>
     <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">load_json</span>
 
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
@@ -193,7 +193,6 @@
     <span class="n">img_files</span> <span class="o">=</span> <span class="n">data_checker_obj</span><span class="o">.</span><span class="n">img_paths</span>
     <span class="n">ann_files</span> <span class="o">=</span> <span class="n">data_checker_obj</span><span class="o">.</span><span class="n">ann_paths</span>
     <span class="k">assert</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_files</span><span class="p">)</span><span class="o">/</span><span class="n">num_exp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_files</span><span class="p">))</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">img_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span> <span class="o">==</span> <span class="n">ann_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span>
     <span class="k">assert</span><span class="p">(</span><span class="n">img_files</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">0</span><span class="o">*</span><span class="n">num_exp</span><span class="p">)]</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span>
            <span class="n">ann_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span></div>
 
@@ -206,7 +205,6 @@
     <span class="n">img_files</span> <span class="o">=</span> <span class="n">data_checker_obj</span><span class="o">.</span><span class="n">img_paths</span>
     <span class="n">ann_files</span> <span class="o">=</span> <span class="n">data_checker_obj</span><span class="o">.</span><span class="n">ann_paths</span>
     <span class="k">assert</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">img_files</span><span class="p">)</span><span class="o">/</span><span class="n">num_exp</span><span class="p">)</span> <span class="o">==</span> <span class="nb">len</span><span class="p">(</span><span class="n">ann_files</span><span class="p">))</span>
-    <span class="k">assert</span><span class="p">(</span><span class="n">img_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span> <span class="o">==</span> <span class="n">ann_files</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="p">)</span>
     <span class="k">assert</span><span class="p">(</span><span class="n">img_files</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="mi">10</span><span class="o">*</span><span class="n">num_exp</span><span class="p">)]</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span>
            <span class="n">ann_files</span><span class="p">[</span><span class="mi">10</span><span class="p">]</span><span class="o">.</span><span class="n">stem</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span></div>
 </pre></div>

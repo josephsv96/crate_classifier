@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>sub_modules.pkg_1b &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">crate_classifier</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>sub_modules.pkg_1b</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for sub_modules.pkg_1b</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">tqdm</span> <span class="kn">import</span> <span class="n">tqdm</span>
+
+
+<span class="c1"># Local Modules</span>
+<span class="kn">from</span> <span class="nn">sub_modules</span> <span class="kn">import</span> <span class="n">pkg_1a</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">load_json</span>
+<span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">read_cmp</span>
+<span class="kn">from</span> <span class="nn">segmap_v2</span> <span class="kn">import</span> <span class="n">SegmentaionMap</span>
+
+
+<div class="viewcode-block" id="DataSorter"><a class="viewcode-back" href="../../sub_modules.html#sub_modules.pkg_1b.DataSorter">[docs]</a><span class="k">class</span> <span class="nc">DataSorter</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">img_paths</span><span class="p">,</span> <span class="n">ann_paths</span><span class="p">,</span> <span class="n">PKG_1_PARAMS</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">img_paths</span> <span class="o">=</span> <span class="n">img_paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ann_paths</span> <span class="o">=</span> <span class="n">ann_paths</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">PKG_1_PARAMS</span> <span class="o">=</span> <span class="n">PKG_1_PARAMS</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">image_db</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annot_db</span> <span class="o">=</span> <span class="n">DataSorter</span><span class="o">.</span><span class="n">sort_by_class</span><span class="p">(</span><span class="n">img_paths</span><span class="p">,</span>
+                                                                <span class="n">ann_paths</span><span class="p">,</span>
+                                                                <span class="n">PKG_1_PARAMS</span><span class="p">)</span>
+
+<div class="viewcode-block" id="DataSorter.sort_by_class"><a class="viewcode-back" href="../../sub_modules.html#sub_modules.pkg_1b.DataSorter.sort_by_class">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">sort_by_class</span><span class="p">(</span><span class="n">img_paths</span><span class="p">,</span> <span class="n">ann_paths</span><span class="p">,</span> <span class="n">PKG_1_PARAMS</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Return sorted dicts of each class by pixel density sorting</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">class_init</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;class_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;num_classes&quot;</span><span class="p">])]</span>
+        <span class="n">image_db</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">class_init</span><span class="p">}</span>
+        <span class="n">annot_db</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">class_init</span><span class="p">}</span>
+
+        <span class="n">img_id</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">for</span> <span class="n">annot_file</span> <span class="ow">in</span> <span class="n">tqdm</span><span class="p">(</span><span class="n">ann_paths</span><span class="p">):</span>
+            <span class="n">annot_arr</span> <span class="o">=</span> <span class="n">read_cmp</span><span class="p">(</span><span class="n">annot_file</span><span class="p">,</span> <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;img_src_shape&quot;</span><span class="p">])</span>
+            <span class="n">segmap_obj</span> <span class="o">=</span> <span class="n">SegmentaionMap</span><span class="p">(</span><span class="n">annot_arr</span><span class="p">,</span>
+                                        <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;num_classes&quot;</span><span class="p">],</span>
+                                        <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;bg_class_id&quot;</span><span class="p">])</span>
+            <span class="c1"># fg_cls / activated_px, bg_cls/ total_px</span>
+            <span class="n">cls_den_arr</span> <span class="o">=</span> <span class="n">segmap_obj</span><span class="o">.</span><span class="n">activation_density</span><span class="p">()</span>
+            <span class="c1"># Avoiding background classes</span>
+            <span class="c1"># cls_den_arr_original = cls_den_arr.copy()</span>
+            <span class="n">cls_den_arr</span><span class="p">[</span><span class="n">segmap_obj</span><span class="o">.</span><span class="n">bg_class_id</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">detected_cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span>
+                    <span class="n">cls_den_arr</span> <span class="o">&gt;</span> <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;cls_thres&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+                <span class="c1"># Pushing images with less than threshold to or first id or</span>
+                <span class="c1"># last id</span>
+                <span class="c1"># detected_cls = segmap_obj.fg_class_id[-1]</span>
+                <span class="n">detected_cls</span> <span class="o">=</span> <span class="mi">0</span>
+
+            <span class="n">annot_db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;class_</span><span class="si">{</span><span class="n">detected_cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">annot_file</span><span class="p">)</span>
+
+            <span class="c1"># Appending image files</span>
+            <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
+            <span class="k">while</span><span class="p">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;num_exp&quot;</span><span class="p">]):</span>
+                <span class="n">image_db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;class_</span><span class="si">{</span><span class="n">detected_cls</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_paths</span><span class="p">[</span><span class="n">img_id</span> <span class="o">+</span> <span class="n">i</span><span class="p">])</span>
+                <span class="n">i</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">img_id</span> <span class="o">+=</span> <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;num_exp&quot;</span><span class="p">]</span>
+
+        <span class="k">return</span> <span class="n">image_db</span><span class="p">,</span> <span class="n">annot_db</span></div>
+
+<div class="viewcode-block" id="DataSorter.logging"><a class="viewcode-back" href="../../sub_modules.html#sub_modules.pkg_1b.DataSorter.logging">[docs]</a>    <span class="k">def</span> <span class="nf">logging</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Logging for pkg_1b</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;img_paths[&#39;class_1&#39;] sample:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">image_db</span><span class="p">[</span><span class="s2">&quot;class_1&quot;</span><span class="p">][:</span><span class="mi">4</span><span class="p">])</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ann_paths[&#39;class_1&#39;] sample:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">annot_db</span><span class="p">[</span><span class="s2">&quot;class_1&quot;</span><span class="p">][:</span><span class="mi">4</span><span class="p">])</span>
+
+        <span class="k">return</span> <span class="kc">None</span></div></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../sub_modules.html#sub_modules.pkg_1b.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    # pkg_1a</span>
+<span class="sd">    img_paths, ann_paths = pkg_1a.main(PKG_1_PARAMS)</span>
+<span class="sd">    # pkg_1b</span>
+<span class="sd">    image_db, annot_db = sort_by_class(img_paths, ann_paths, PKG_1_PARAMS)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c1"># Initial Parameters</span>
+    <span class="n">PKG_1_PARAMS</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;pkg_1_config.json&quot;</span><span class="p">)</span>
+
+    <span class="c1"># pkg_1a</span>
+    <span class="n">pkg_1a_obj</span> <span class="o">=</span> <span class="n">pkg_1a</span><span class="o">.</span><span class="n">DataChecker</span><span class="p">(</span><span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;src_dir&quot;</span><span class="p">],</span>
+                                    <span class="n">PKG_1_PARAMS</span><span class="p">[</span><span class="s2">&quot;num_exp&quot;</span><span class="p">])</span>
+
+    <span class="c1"># sorting by class</span>
+    <span class="n">pkg_1b_obj</span> <span class="o">=</span> <span class="n">DataSorter</span><span class="p">(</span><span class="n">pkg_1a_obj</span><span class="o">.</span><span class="n">img_paths</span><span class="p">,</span> <span class="n">pkg_1a_obj</span><span class="o">.</span><span class="n">ann_paths</span><span class="p">,</span>
+                            <span class="n">PKG_1_PARAMS</span><span class="p">)</span>
+
+    <span class="c1"># logging</span>
+    <span class="n">pkg_1b_obj</span><span class="o">.</span><span class="n">logging</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

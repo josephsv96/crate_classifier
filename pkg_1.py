@@ -1,7 +1,7 @@
 # Local Modules
-from modules import pkg_1a
-from modules import pkg_1b
-from modules import pkg_1c
+from sub_modules import pkg_1a
+from sub_modules import pkg_1b
+from sub_modules import pkg_1c
 import statistics
 from utils import load_json
 

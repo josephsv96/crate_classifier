@@ -24,6 +24,7 @@ crate_classifier
    segmap_v2
    sliding
    statistics
+   sub_modules
    tests
    train
    train_v2
