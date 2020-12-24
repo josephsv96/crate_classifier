@@ -48,7 +48,7 @@ def read_cmp(cmp_file, annot_shape):
     # get file size
     file.seek(0, 2)    # set pointer to end of file
     nb_bytes = file.tell()
-    file.seek(0, 0)    # set pointer to begin of file
+    file.seek(0, 0)    # set pointer to beginning of file
     buf = file.read(nb_bytes)
     file.close()
 
@@ -61,18 +61,29 @@ def read_cmp(cmp_file, annot_shape):
     return ann_arr
 
 
-def write_cmp(output_path, annotation):
+def write_cmp(ann_arr, file_name):
     """Write numpy array of shape (height, width, 1) to .cmp file
 
     Args:
         annotation ([numpy.array]): Annotation file
     """
+    try:
+        ann_arr_flat = np.byte(ann_arr.flatten())
+        ann_bytearray = ann_arr_flat.tobytes()
+
+        # make file
+        new_cmp_file = open(file_name, "wb")
+        new_cmp_file.write(ann_bytearray)
+    except Exception:
+        pass  # or you could use 'continue'
+
+    return True
 
 
-def write_image(img, file_name):
+def write_image(img_arr, file_name):
 
     try:
-        cv2.imwrite(file_name, img)
+        cv2.imwrite(file_name, img_arr)
     except Exception:
         pass  # or you could use 'continue'
 

@@ -19,7 +19,7 @@
     ['img_000001_a.bmp',..., 'img_000512_c.bmp',...]
     ```
 
-  * ann_file
+  * ann_file (for one image set)
 
     ```python
     ['img_000001_a.cmp',..., 'img_000512_c.cmp',...]

@@ -9,6 +9,7 @@ import cv2
 from utils import create_output_folder
 from utils import save_npy_v2
 from utils import read_cmp
+from utils import write_cmp
 from utils import get_timestamp
 
 
@@ -174,13 +175,11 @@ class Augmenter:
             numpy.array: Augmented annotation set of (out_h, out_w, num_exp*3)
             numpy.array: Augmented annotation set of (out_h, out_w, 1)
         """
-        img_aug_arr = np.zeros(
-            [num_gen, self.out_h, self.out_w, self.num_exp*3],
-            dtype=np.float32)
+        img_aug_arr = np.zeros([num_gen, self.out_h, self.out_w, self.num_exp*3],
+                               dtype=np.float32)
 
-        ann_aug_arr = np.zeros(
-            [num_gen, self.out_h, self.out_w, 1],
-            dtype=np.float32)
+        ann_aug_arr = np.zeros([num_gen, self.out_h, self.out_w, 1],
+                               dtype=np.float32)
 
         # Generating augmenters
         augs = self.get_augmenters(num_gen=num_gen, aug_config=self.AUG_CONFIG)
@@ -235,6 +234,8 @@ class Augmenter:
 
                 # !WORK-IN-PROGRESS
                 # writing annotation to .cmp
-                # write_cmp(ann_file, ann_aug_arr[i, :, :, :])
-
+                # ann_name = f"img_{str(i+start_index).zfill(6)}.cmp"
+                # ann_file = f"{self.out_dir}/images/{ann_name}"
+                # write_cmp(np.argmax(ann_aug_arr[i, :, :, :], axis=-1),
+                #           ann_file)
         return img_aug_arr, ann_aug_arr

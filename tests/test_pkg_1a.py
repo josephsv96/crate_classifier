@@ -20,7 +20,7 @@ def load_params():
     """
     PKG_1_PARAMS = load_json("pkg_1_config.json")
 
-    return PKG_1_PARAMS["src_dir"], PKG_1_PARAMS["num_exp"]
+    return PKG_1_PARAMS
 
 
 def chk_dir(src_dir):
@@ -38,7 +38,9 @@ def chk_dir(src_dir):
 
 
 def test_data_checker_1():
-    src_dir, num_exp = load_params()
+    PARAMS = load_params()
+    src_dir, num_exp = PARAMS["src_dir"], PARAMS["num_exp"]
+
     assert(chk_dir(src_dir) is True)
 
     data_checker_obj = DataChecker(src_dir, num_exp)
@@ -50,7 +52,9 @@ def test_data_checker_1():
 
 
 def test_data_checker_2():
-    src_dir, num_exp = load_params()
+    PARAMS = load_params()
+    src_dir, num_exp = PARAMS["src_dir"], PARAMS["num_exp"]
+
     assert(chk_dir(src_dir) is True)
 
     data_checker_obj = DataChecker(src_dir, num_exp)

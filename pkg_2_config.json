@@ -1,5 +1,5 @@
 {
-    "usage":"To specify parameters for training the network",
+    "usage":"Parameters for training the network",
     "net_spec":{
         "num_exp" : 3,
         "net_depth": 3,

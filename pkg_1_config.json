@@ -1,4 +1,5 @@
 {
+    "usage":"Parameters to create the dataset for training the model",
     "src_dir": "images/sample",
     "out_dir":"pkg_1_outputs",
     "img_src_shape": [964, 1292],
