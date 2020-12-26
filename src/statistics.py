@@ -2,7 +2,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from utils import get_custom_cmap
+from src.utils import get_custom_cmap
 
 
 def class_identifier(annot_arr):

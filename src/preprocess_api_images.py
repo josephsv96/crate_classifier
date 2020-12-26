@@ -1,5 +1,5 @@
 from pathlib import Path
-from utils import create_output_folder, read_image, write_image
+from src.utils import create_output_folder, read_image, write_image
 
 
 def get_working_dir(working_dir):

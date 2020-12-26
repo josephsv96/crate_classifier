@@ -1,0 +1,1085 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src package &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="src.models package" href="src.models.html" />
+    <link rel="prev" title="crate_classifier" href="modules.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">src package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html">src.models package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html">src.sub_modules package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.augmentation">src.augmentation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.bb_to_npy">src.bb_to_npy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.data_loader">src.data_loader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.fft">src.fft module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.make_dataset">src.make_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.model">src.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.model_v2">src.model_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.model_v3">src.model_v3 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.model_v3_5k">src.model_v3_5k module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.pkg_1">src.pkg_1 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src-pkg-2-module">src.pkg_2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.plotting">src.plotting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.postprocessing">src.postprocessing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.preprocess_api_images">src.preprocess_api_images module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.preprocessing">src.preprocessing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src-rhs-frontend-module">src.rhs_frontend module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.segmap">src.segmap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.segmap_v2">src.segmap_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.sliding">src.sliding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.statistics">src.statistics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src-train-module">src.train module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#src-train-v2-module">src.train_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src.utils">src.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+      <li>src package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/src.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="src-package">
+<h1>src package<a class="headerlink" href="#src-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="src.models.html">src.models package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_14k">src.models.model_14k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21">src.models.model_densenet21 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_35k">src.models.model_densenet21_35k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_38k">src.models.model_densenet21_38k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_48k">src.models.model_densenet21_48k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_53k">src.models.model_densenet21_53k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18">src.models.model_resnet18 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_34k">src.models.model_resnet18_34k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_46k">src.models.model_resnet18_46k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_58k">src.models.model_resnet18_58k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_70k">src.models.model_resnet18_70k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16">src.models.model_vgg16 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_24k">src.models.model_vgg16_24k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_34k">src.models.model_vgg16_34k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_47k">src.models.model_vgg16_47k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_51k">src.models.model_vgg16_51k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_64k">src.models.model_vgg16_64k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.models.html#module-src.models">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="src.sub_modules.html">src.sub_modules package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#src-sub-modules-model-utils-module">src.sub_modules.model_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1a">src.sub_modules.pkg_1a module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1b">src.sub_modules.pkg_1b module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1c">src.sub_modules.pkg_1c module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#src-sub-modules-pkg-2a-module">src.sub_modules.pkg_2a module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.augmentation">
+<span id="src-augmentation-module"></span><h2>src.augmentation module<a class="headerlink" href="#module-src.augmentation" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.augmentation.Augmenter">
+<em class="property">class </em><code class="sig-prename descclassname">src.augmentation.</code><code class="sig-name descname">Augmenter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">PARAMS</span></em>, <em class="sig-param"><span class="n">img_paths</span></em>, <em class="sig-param"><span class="n">ann_paths</span></em>, <em class="sig-param"><span class="n">out_dir</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Class load image sets at different exposures and their annotations
+to generate augmented images from them.</p>
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.gaussian_blur">
+<em class="property">static </em><code class="sig-name descname">gaussian_blur</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_instance</span></em>, <em class="sig-param"><span class="n">gauss_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.gaussian_blur"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.gaussian_blur" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply Gaussian filter to an image instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_instance</strong> (<em>numpy.array</em>) – Input image array</p></li>
+<li><p><strong>gauss_config</strong> (<em>dict</em>) – Filter parameters</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Blurred image output</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.generate_aug">
+<code class="sig-name descname">generate_aug</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_gen</span></em>, <em class="sig-param"><span class="n">r_state</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">write_img</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">start_index</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.generate_aug"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.generate_aug" title="Permalink to this definition">¶</a></dt>
+<dd><p>To generate augmented image and annotation sets.
+Same augmentation is applied to a set of images and its annotation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>num_gen</strong> (<em>int</em>) – Number of images to be generated.</p></li>
+<li><p><strong>r_state</strong> (<em>int</em><em>, </em><em>optional</em>) – Random state to select image set.</p></li>
+<li><p><strong>to 1.</strong> (<em>Defaults</em>) – </p></li>
+<li><p><strong>write_img</strong> (<em>bool</em><em>, </em><em>optional</em>) – Flag to write images to output folder.</p></li>
+<li><p><strong>to False.</strong> (<em>Defaults</em>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented annotation set of (out_h, out_w, num_exp*3)
+numpy.array: Augmented annotation set of (out_h, out_w, 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.get_ann_augs">
+<code class="sig-name descname">get_ann_augs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot</span></em>, <em class="sig-param"><span class="n">augmenter</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.get_ann_augs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.get_ann_augs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply augmenter to annotation array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>annot</strong> (<em>numpy.array</em>) – Annotation; (height, width)</p></li>
+<li><p><strong>augmenter</strong> (<em>imgaug.augmenters.meta.Augmenter</em>) – Augmenter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented annotation set of (out_h, out_w, 1)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.get_augmenters">
+<em class="property">static </em><code class="sig-name descname">get_augmenters</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_gen</span></em>, <em class="sig-param"><span class="n">aug_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.get_augmenters"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.get_augmenters" title="Permalink to this definition">¶</a></dt>
+<dd><p>Generate a list of deterministic augmenters. num_gen = 0 or None
+will return a single Augmenter</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>num_gen</strong> (<em>int</em>) – Number of augmenters</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>List of Augmeters</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.get_img_augs">
+<code class="sig-name descname">get_img_augs</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_files</span></em>, <em class="sig-param"><span class="n">augmenter</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.get_img_augs"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.get_img_augs" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply augmenter to img_files array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_files</strong> (<em>numpy.array</em>) – Image set; (height, width, num_exp * 3)</p></li>
+<li><p><strong>augmenter</strong> (<em>imgaug.augmenters.meta.Augmenter</em>) – Augmenter</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Augmented image set of (out_h, out_w, num_exp * 3)</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.augmentation.Augmenter.to_square">
+<em class="property">static </em><code class="sig-name descname">to_square</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_instance</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/augmentation.html#Augmenter.to_square"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.augmentation.Augmenter.to_square" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts a wide image to square image, without loosing resolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>img_instance</strong> (<em>numpy.array</em>) – Image in wide resolution</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Squared image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.bb_to_npy">
+<span id="src-bb-to-npy-module"></span><h2>src.bb_to_npy module<a class="headerlink" href="#module-src.bb_to_npy" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.bb_to_npy.bb_to_npy">
+<code class="sig-prename descclassname">src.bb_to_npy.</code><code class="sig-name descname">bb_to_npy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_file</span></em>, <em class="sig-param"><span class="n">label</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/bb_to_npy.html#bb_to_npy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.bb_to_npy.bb_to_npy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.bb_to_npy.main">
+<code class="sig-prename descclassname">src.bb_to_npy.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/bb_to_npy.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.bb_to_npy.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.data_loader">
+<span id="src-data-loader-module"></span><h2>src.data_loader module<a class="headerlink" href="#module-src.data_loader" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.data_loader.load_json">
+<code class="sig-prename descclassname">src.data_loader.</code><code class="sig-name descname">load_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_loader.html#load_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.data_loader.load_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.data_loader.load_npy">
+<code class="sig-prename descclassname">src.data_loader.</code><code class="sig-name descname">load_npy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">npy_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/data_loader.html#load_npy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.data_loader.load_npy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.fft">
+<span id="src-fft-module"></span><h2>src.fft module<a class="headerlink" href="#module-src.fft" title="Permalink to this headline">¶</a></h2>
+<p>FFT of individual crate classes using sliding window</p>
+<dl class="py function">
+<dt id="src.fft.main">
+<code class="sig-prename descclassname">src.fft.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/fft.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.fft.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.fft.sort_img_arr_by_class">
+<code class="sig-prename descclassname">src.fft.</code><code class="sig-name descname">sort_img_arr_by_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ann_arr</span></em>, <em class="sig-param"><span class="n">PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/fft.html#sort_img_arr_by_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.fft.sort_img_arr_by_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.main">
+<span id="src-main-module"></span><h2>src.main module<a class="headerlink" href="#module-src.main" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.main.main">
+<code class="sig-prename descclassname">src.main.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/main.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>EPOCHS = 500
+R_STATE = 0
+BS = 32
+INIT_LR = 1e-3</p>
+<p>input_height = 128
+input_width = 128</p>
+<p># STEPS = len(train_X) // BS ##steps_per_epoch</p>
+<p>class_limit = 20</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.make_dataset">
+<span id="src-make-dataset-module"></span><h2>src.make_dataset module<a class="headerlink" href="#module-src.make_dataset" title="Permalink to this headline">¶</a></h2>
+<p>To make a dataset from images</p>
+<dl class="py function">
+<dt id="src.make_dataset.main">
+<code class="sig-prename descclassname">src.make_dataset.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/make_dataset.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.make_dataset.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.model">
+<span id="src-model-module"></span><h2>src.model module<a class="headerlink" href="#module-src.model" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.model.cnn_def">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">cnn_def</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_layer</span></em>, <em class="sig-param"><span class="n">num_layer</span></em>, <em class="sig-param"><span class="n">num_classes</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#cnn_def"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.cnn_def" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.model.cnn_def_2">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">cnn_def_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">input_layer</span></em>, <em class="sig-param"><span class="n">num_layer</span></em>, <em class="sig-param"><span class="n">num_classes</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#cnn_def_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.cnn_def_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.model.make_model">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">make_model</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_shape</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">num_exposures</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">loss_func</span><span class="o">=</span><span class="default_value">'CatCross'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#make_model"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.make_model" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.model.make_model_2">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">make_model_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_shape</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">num_exposures</span><span class="o">=</span><span class="default_value">1</span></em>, <em class="sig-param"><span class="n">init_lr</span><span class="o">=</span><span class="default_value">0.001</span></em>, <em class="sig-param"><span class="n">epochs</span><span class="o">=</span><span class="default_value">100</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#make_model_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.make_model_2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.model.model_freeze">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">model_freeze</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">depth</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#model_freeze"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.model_freeze" title="Permalink to this definition">¶</a></dt>
+<dd><p>To freeze the firt layers of a model
+depth - the number of last layer to remain trainable</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.model.model_reshape">
+<code class="sig-prename descclassname">src.model.</code><code class="sig-name descname">model_reshape</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">model</span></em>, <em class="sig-param"><span class="n">input_tensor</span></em>, <em class="sig-param"><span class="n">depth</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">num_layer</span><span class="o">=</span><span class="default_value">9</span></em>, <em class="sig-param"><span class="n">loss_func</span><span class="o">=</span><span class="default_value">'CatCross'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model.html#model_reshape"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model.model_reshape" title="Permalink to this definition">¶</a></dt>
+<dd><p>To reshape the output layers of the output.
+Takes a trained model as input, adds layers to a branch at ‘depth’ level.
+The new_model is</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.model_v2">
+<span id="src-model-v2-module"></span><h2>src.model_v2 module<a class="headerlink" href="#module-src.model_v2" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.model_v2.CrateNet">
+<em class="property">class </em><code class="sig-prename descclassname">src.model_v2.</code><code class="sig-name descname">CrateNet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v2.html#CrateNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v2.CrateNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.model_v2.CrateNet.build">
+<em class="property">static </em><code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v2.html#CrateNet.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v2.CrateNet.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build model with CategoricalCrossentropy loss</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.model_v2.CrateNet.denife_cnn">
+<em class="property">static </em><code class="sig-name descname">denife_cnn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">num_exposures</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v2.html#CrateNet.denife_cnn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v2.CrateNet.denife_cnn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.model_v3">
+<span id="src-model-v3-module"></span><h2>src.model_v3 module<a class="headerlink" href="#module-src.model_v3" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.model_v3.CrateNet">
+<em class="property">class </em><code class="sig-prename descclassname">src.model_v3.</code><code class="sig-name descname">CrateNet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3.html#CrateNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3.CrateNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.model_v3.CrateNet.build">
+<em class="property">static </em><code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3.html#CrateNet.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3.CrateNet.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build model with CategoricalCrossentropy loss</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.model_v3.CrateNet.denife_cnn">
+<em class="property">static </em><code class="sig-name descname">denife_cnn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">num_exposures</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3.html#CrateNet.denife_cnn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3.CrateNet.denife_cnn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.model_v3_5k">
+<span id="src-model-v3-5k-module"></span><h2>src.model_v3_5k module<a class="headerlink" href="#module-src.model_v3_5k" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.model_v3_5k.CrateNet">
+<em class="property">class </em><code class="sig-prename descclassname">src.model_v3_5k.</code><code class="sig-name descname">CrateNet</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3_5k.html#CrateNet"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3_5k.CrateNet" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.model_v3_5k.CrateNet.build">
+<em class="property">static </em><code class="sig-name descname">build</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">grid_h</span></em>, <em class="sig-param"><span class="n">grid_w</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">init_lr</span></em>, <em class="sig-param"><span class="n">epochs</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3_5k.html#CrateNet.build"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3_5k.CrateNet.build" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build model with CategoricalCrossentropy loss</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.model_v3_5k.CrateNet.denife_cnn">
+<em class="property">static </em><code class="sig-name descname">denife_cnn</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">height</span></em>, <em class="sig-param"><span class="n">width</span></em>, <em class="sig-param"><span class="n">num_exposures</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">depth</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/model_v3_5k.html#CrateNet.denife_cnn"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.model_v3_5k.CrateNet.denife_cnn" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.pkg_1">
+<span id="src-pkg-1-module"></span><h2>src.pkg_1 module<a class="headerlink" href="#module-src.pkg_1" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.pkg_1.main">
+<code class="sig-prename descclassname">src.pkg_1.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/pkg_1.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.pkg_1.main" title="Permalink to this definition">¶</a></dt>
+<dd><p># pkg_1a
+img_paths, ann_paths = pkg_1a.main(PKG_1_PARAMS)
+# pkg_1b
+image_db, annot_db = sort_by_class(img_paths, ann_paths, PKG_1_PARAMS)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="src-pkg-2-module">
+<h2>src.pkg_2 module<a class="headerlink" href="#src-pkg-2-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.plotting">
+<span id="src-plotting-module"></span><h2>src.plotting module<a class="headerlink" href="#module-src.plotting" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.plotting.highest_point">
+<code class="sig-prename descclassname">src.plotting.</code><code class="sig-name descname">highest_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plotting.html#highest_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.plotting.highest_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.plotting.lowest_point">
+<code class="sig-prename descclassname">src.plotting.</code><code class="sig-name descname">lowest_point</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plotting.html#lowest_point"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.plotting.lowest_point" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.plotting.plot_history">
+<code class="sig-prename descclassname">src.plotting.</code><code class="sig-name descname">plot_history</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">history_list</span></em>, <em class="sig-param"><span class="n">epochs</span></em>, <em class="sig-param"><span class="n">model_names</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/plotting.html#plot_history"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.plotting.plot_history" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.postprocessing">
+<span id="src-postprocessing-module"></span><h2>src.postprocessing module<a class="headerlink" href="#module-src.postprocessing" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.postprocessing.BandPass">
+<em class="property">class </em><code class="sig-prename descclassname">src.postprocessing.</code><code class="sig-name descname">BandPass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_cat</span></em>, <em class="sig-param"><span class="n">min_thres</span></em>, <em class="sig-param"><span class="n">min_dist</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/postprocessing.html#BandPass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.postprocessing.BandPass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>To filter the output values of predictions, with minimum threshold,
+min distance between the max values</p>
+<dl class="py method">
+<dt id="src.postprocessing.BandPass.low_pass">
+<em class="property">static </em><code class="sig-name descname">low_pass</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_cat</span></em>, <em class="sig-param"><span class="n">min_thres</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/postprocessing.html#BandPass.low_pass"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.postprocessing.BandPass.low_pass" title="Permalink to this definition">¶</a></dt>
+<dd><p>min_thres is the cutoff values, else 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt id="src.postprocessing.TileSplitter">
+<em class="property">class </em><code class="sig-prename descclassname">src.postprocessing.</code><code class="sig-name descname">TileSplitter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/postprocessing.html#TileSplitter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.postprocessing.TileSplitter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>To process the output prediction by splitting it into tiles</p>
+<dl class="py method">
+<dt id="src.postprocessing.TileSplitter.Tile_3x3">
+<em class="property">static </em><code class="sig-name descname">Tile_3x3</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_i</span></em>, <em class="sig-param"><span class="n">tile_cfg</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/postprocessing.html#TileSplitter.Tile_3x3"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.postprocessing.TileSplitter.Tile_3x3" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.preprocess_api_images">
+<span id="src-preprocess-api-images-module"></span><h2>src.preprocess_api_images module<a class="headerlink" href="#module-src.preprocess_api_images" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.preprocess_api_images.get_working_dir">
+<code class="sig-prename descclassname">src.preprocess_api_images.</code><code class="sig-name descname">get_working_dir</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocess_api_images.html#get_working_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess_api_images.get_working_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess_api_images.main">
+<code class="sig-prename descclassname">src.preprocess_api_images.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocess_api_images.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess_api_images.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocess_api_images.process_api_images">
+<code class="sig-prename descclassname">src.preprocess_api_images.</code><code class="sig-name descname">process_api_images</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">output_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocess_api_images.html#process_api_images"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocess_api_images.process_api_images" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.preprocessing">
+<span id="src-preprocessing-module"></span><h2>src.preprocessing module<a class="headerlink" href="#module-src.preprocessing" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.preprocessing.ann_preprocess">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">ann_preprocess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ANNOT_SETS</span></em>, <em class="sig-param"><span class="n">class_limit</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#ann_preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.ann_preprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.ann_preprocess_2">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">ann_preprocess_2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">old_config</span></em>, <em class="sig-param"><span class="n">new_config</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#ann_preprocess_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.ann_preprocess_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>To match arr which has new_config match the old_config of annotations</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.ann_preprocess_v2">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">ann_preprocess_v2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em>, <em class="sig-param"><span class="n">num_exp</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#ann_preprocess_v2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.ann_preprocess_v2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only the first annotation is taken from the the annot_arr</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.avg_exp">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">avg_exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_set</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#avg_exp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.avg_exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Averaging different exposures into 1 image</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.get_dataset">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">get_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dataset_path</span></em>, <em class="sig-param"><span class="n">num_exp</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#get_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.get_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create the image and annotation dataset from given path.
+Given path should contain both image and corresponding annotation.
+Image file as .bmp.
+Annotation file as .cmp</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataset_path</strong> (<em>[</em><em>path</em><em>]</em>) – [Path of the image and annotation files]</p></li>
+<li><p><strong>num_exp</strong> (<em>int</em><em>, </em><em>optional</em>) – [Number of exposures of images]. Defaults to 1.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[image array, (num_img, height, width, num_exp)]
+[numpy.array]: [annotation array, (num_img, height, width, 1)]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[numpy.array]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.img_preprocess">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">img_preprocess</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">IMAGE_SETS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#img_preprocess"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.img_preprocess" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.limit_output_class">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">limit_output_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">y</span></em>, <em class="sig-param"><span class="n">limited_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#limit_output_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.limit_output_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Function to limit the classes of y
+y             - original output array will all classes
+limited_list  - a list of the classes to limit
+limited_y     - output array with lmited classes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.resize_arr">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">resize_arr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">arr</span></em>, <em class="sig-param"><span class="n">new_width</span></em>, <em class="sig-param"><span class="n">new_height</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#resize_arr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.resize_arr" title="Permalink to this definition">¶</a></dt>
+<dd><p>To resize the the input to the model</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.split_data">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">split_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">images</span></em>, <em class="sig-param"><span class="n">labels</span></em>, <em class="sig-param"><span class="n">RANDOM_STATE</span><span class="o">=</span><span class="default_value">0</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#split_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.split_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.stack_exp">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">stack_exp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_set</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#stack_exp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.stack_exp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stacking different exposure levels together (back to back)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.preprocessing.stack_exp_v2">
+<code class="sig-prename descclassname">src.preprocessing.</code><code class="sig-name descname">stack_exp_v2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_arr</span></em>, <em class="sig-param"><span class="n">num_exp</span><span class="o">=</span><span class="default_value">3</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/preprocessing.html#stack_exp_v2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.preprocessing.stack_exp_v2" title="Permalink to this definition">¶</a></dt>
+<dd><p>To reshape image array [[width, height, 3] * 3] to [[width, height, 9]]</p>
+</dd></dl>
+
+</div>
+<div class="section" id="src-rhs-frontend-module">
+<h2>src.rhs_frontend module<a class="headerlink" href="#src-rhs-frontend-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.segmap">
+<span id="src-segmap-module"></span><h2>src.segmap module<a class="headerlink" href="#module-src.segmap" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.segmap.SegmentaionMap">
+<em class="property">class </em><code class="sig-prename descclassname">src.segmap.</code><code class="sig-name descname">SegmentaionMap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_inst</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.activation_density">
+<code class="sig-name descname">activation_density</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.activation_density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.activation_density" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.arr_to_categorical">
+<code class="sig-name descname">arr_to_categorical</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.arr_to_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.arr_to_categorical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.batch_dist">
+<code class="sig-name descname">batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em>, <em class="sig-param"><span class="n">low_cutoff</span><span class="o">=</span><span class="default_value">0.05</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.class_dist">
+<code class="sig-name descname">class_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.get_norm_values">
+<code class="sig-name descname">get_norm_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_values</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.get_norm_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.get_norm_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.imshow_prediciton">
+<code class="sig-name descname">imshow_prediciton</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.imshow_prediciton"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.imshow_prediciton" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.show_batch_dist">
+<code class="sig-name descname">show_batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">show_bg</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">max_y_limit</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.show_batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.show_batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap.SegmentaionMap.show_class_dist">
+<code class="sig-name descname">show_class_dist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap.html#SegmentaionMap.show_class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap.SegmentaionMap.show_class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.segmap_v2">
+<span id="src-segmap-v2-module"></span><h2>src.segmap_v2 module<a class="headerlink" href="#module-src.segmap_v2" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.segmap_v2.SegmentaionMap">
+<em class="property">class </em><code class="sig-prename descclassname">src.segmap_v2.</code><code class="sig-name descname">SegmentaionMap</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_inst</span></em>, <em class="sig-param"><span class="n">num_classes</span></em>, <em class="sig-param"><span class="n">bg_class_id</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.activation_density">
+<code class="sig-name descname">activation_density</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.activation_density"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.activation_density" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.arr_to_categorical">
+<code class="sig-name descname">arr_to_categorical</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.arr_to_categorical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.arr_to_categorical" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.batch_dist">
+<code class="sig-name descname">batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em>, <em class="sig-param"><span class="n">low_cutoff</span><span class="o">=</span><span class="default_value">0.05</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.class_dist">
+<code class="sig-name descname">class_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">low_threshold</span><span class="o">=</span><span class="default_value">0.15</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.get_norm_values">
+<code class="sig-name descname">get_norm_values</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x_values</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.get_norm_values"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.get_norm_values" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.imshow_prediciton">
+<code class="sig-name descname">imshow_prediciton</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.imshow_prediciton"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.imshow_prediciton" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.show_batch_dist">
+<code class="sig-name descname">show_batch_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">show_bg</span><span class="o">=</span><span class="default_value">False</span></em>, <em class="sig-param"><span class="n">max_y_limit</span><span class="o">=</span><span class="default_value">10</span></em>, <em class="sig-param"><span class="n">plot_type</span><span class="o">=</span><span class="default_value">'a'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.show_batch_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.show_batch_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.segmap_v2.SegmentaionMap.show_class_dist">
+<code class="sig-name descname">show_class_dist</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/segmap_v2.html#SegmentaionMap.show_class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.segmap_v2.SegmentaionMap.show_class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.sliding">
+<span id="src-sliding-module"></span><h2>src.sliding module<a class="headerlink" href="#module-src.sliding" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.sliding.SlidingWindow">
+<em class="property">class </em><code class="sig-prename descclassname">src.sliding.</code><code class="sig-name descname">SlidingWindow</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em>, <em class="sig-param"><span class="n">w_scale</span></em>, <em class="sig-param"><span class="n">PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>docstring</p>
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.Slide">
+<code class="sig-name descname">Slide</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.Slide"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.Slide" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves a sliding window over the annot_arr of size w_dim
+Slices are updated into sliced_arr</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.get_params">
+<em class="property">static </em><code class="sig-name descname">get_params</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">N_dim</span></em>, <em class="sig-param"><span class="n">w_scale</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.get_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.get_params" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns a feasible sliding window scale and number of iterations</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.image_overlay">
+<code class="sig-name descname">image_overlay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_inst</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.image_overlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.image_overlay" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.show_slices">
+<code class="sig-name descname">show_slices</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_class</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.show_slices"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.show_slices" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints all slices generated using the Sliding window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.show_slices_overlay">
+<code class="sig-name descname">show_slices_overlay</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">num_class</span><span class="o">=</span><span class="default_value">10</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.show_slices_overlay"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.show_slices_overlay" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints all slices generated using the Sliding window</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sliding.SlidingWindow.sort_img_arr_by_class">
+<code class="sig-name descname">sort_img_arr_by_class</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sliding.html#SlidingWindow.sort_img_arr_by_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sliding.SlidingWindow.sort_img_arr_by_class" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.statistics">
+<span id="src-statistics-module"></span><h2>src.statistics module<a class="headerlink" href="#module-src.statistics" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.statistics.class_dist_from_db">
+<code class="sig-prename descclassname">src.statistics.</code><code class="sig-name descname">class_dist_from_db</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_db</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/statistics.html#class_dist_from_db"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.statistics.class_dist_from_db" title="Permalink to this definition">¶</a></dt>
+<dd><p>Only considers valid classes</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.statistics.class_identifier">
+<code class="sig-prename descclassname">src.statistics.</code><code class="sig-name descname">class_identifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/statistics.html#class_identifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.statistics.class_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Identifies the “major” class found in the annotation</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>annot_arr</strong> (<em>[</em><em>type</em><em>]</em>) – [description]</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>[description]</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[type]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.statistics.show_class_dist">
+<code class="sig-prename descclassname">src.statistics.</code><code class="sig-name descname">show_class_dist</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">annot_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/statistics.html#show_class_dist"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.statistics.show_class_dist" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="src-train-module">
+<h2>src.train module<a class="headerlink" href="#src-train-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="src-train-v2-module">
+<h2>src.train_v2 module<a class="headerlink" href="#src-train-v2-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.utils">
+<span id="src-utils-module"></span><h2>src.utils module<a class="headerlink" href="#module-src.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="src.utils.bgr_to_rgb">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">bgr_to_rgb</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_arr</span></em>, <em class="sig-param"><span class="n">num_exp</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#bgr_to_rgb"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.bgr_to_rgb" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.bgr_to_rgb_img">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">bgr_to_rgb_img</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#bgr_to_rgb_img"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.bgr_to_rgb_img" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.create_output_folder">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">create_output_folder</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">folder_name</span><span class="o">=</span><span class="default_value">'output_'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#create_output_folder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.create_output_folder" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.get_custom_cmap">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">get_custom_cmap</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#get_custom_cmap"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.get_custom_cmap" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.get_stem">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">get_stem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dict_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#get_stem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.get_stem" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.get_timestamp">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">get_timestamp</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#get_timestamp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.get_timestamp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.img_arr_to_gray">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">img_arr_to_gray</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#img_arr_to_gray"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.img_arr_to_gray" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.load_json">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">load_json</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">json_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#load_json"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.load_json" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.load_npy">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">load_npy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">npy_file</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#load_npy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.load_npy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.load_txt">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">load_txt</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#load_txt"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.load_txt" title="Permalink to this definition">¶</a></dt>
+<dd><p>To read txt bounding box labels</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.read_cmp">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">read_cmp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmp_file</span></em>, <em class="sig-param"><span class="n">annot_shape</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#read_cmp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.read_cmp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.read_image">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">read_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_file</span></em>, <em class="sig-param"><span class="n">height</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#read_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.read_image" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an image as numpy array for a image file using cv2</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_file</strong> (<em>path</em>) – Image file path</p></li>
+<li><p><strong>height</strong> (<em>int</em><em>, </em><em>optional</em>) – Ouput height if desired,
+width is scaled without loss of resolution.
+Defaults to None.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Single image as numpy array</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>[numpy.array]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.resize_arr">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">resize_arr</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_inst</span></em>, <em class="sig-param"><span class="n">new_shape</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#resize_arr"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.resize_arr" title="Permalink to this definition">¶</a></dt>
+<dd><p>Outputs resized image instance</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>img_inst</strong> (<em>np.array</em>) – Input image instance</p></li>
+<li><p><strong>new_shape</strong> (<em>tuple</em>) – Output size (width, height)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Resized image</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>np.array</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.rm_duplicate">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">rm_duplicate</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#rm_duplicate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.rm_duplicate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove duplicates from a list preserving order
+<a class="reference external" href="https://www.peterbe.com/plog/uniqifiers-benchmark">https://www.peterbe.com/plog/uniqifiers-benchmark</a></p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.save_npy">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">save_npy</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">working_dir</span></em>, <em class="sig-param"><span class="n">label_arr</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#save_npy"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.save_npy" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.save_npy_v2">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">save_npy_v2</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">npy_arr</span></em>, <em class="sig-param"><span class="n">output_path</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#save_npy_v2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.save_npy_v2" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.show_dataset">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">show_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_arr</span></em>, <em class="sig-param"><span class="n">ann_arr</span></em>, <em class="sig-param"><span class="n">show_num</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">num_class</span></em>, <em class="sig-param"><span class="n">BGR</span><span class="o">=</span><span class="default_value">True</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#show_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.show_dataset" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.sort_path">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">sort_path</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path_list</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#sort_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.sort_path" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sorts a list of paths alphanumerically</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.write_cmp">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">write_cmp</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">ann_arr</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#write_cmp"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.write_cmp" title="Permalink to this definition">¶</a></dt>
+<dd><p>Write numpy array of shape (height, width, 1) to .cmp file</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>annotation</strong> (<em>[</em><em>numpy.array</em><em>]</em>) – Annotation file</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.utils.write_image">
+<code class="sig-prename descclassname">src.utils.</code><code class="sig-name descname">write_image</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_arr</span></em>, <em class="sig-param"><span class="n">file_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/utils.html#write_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.utils.write_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="src.models.html" class="btn btn-neutral float-right" title="src.models package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral float-left" title="crate_classifier" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

@@ -3,10 +3,10 @@ from tqdm import tqdm
 
 
 # Local Modules
-from sub_modules import pkg_1a
-from utils import load_json
-from utils import read_cmp
-from segmap_v2 import SegmentaionMap
+from src.sub_modules import pkg_1a
+from src.utils import load_json
+from src.utils import read_cmp
+from src.segmap_v2 import SegmentaionMap
 
 
 class DataSorter:

@@ -35,8 +35,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="train module" href="train.html" />
-    <link rel="prev" title="sub_modules package" href="sub_modules.html" /> 
+    <link rel="prev" title="src.sub_modules package" href="src.sub_modules.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -84,39 +83,18 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sliding.html">sliding module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html">sub_modules package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">tests package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tests.test">tests.test module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tests.test_models">tests.test_models module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tests.test_pkg_1a">tests.test_pkg_1a module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tests.test_sliding">tests.test_sliding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.test_utils">tests.test_utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-tests.testing_utils">tests.testing_utils module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#module-tests">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -295,12 +273,6 @@ Assumes img_file and ann_file follow naming conventions; see README.md</p>
 </dd></dl>
 
 <dl class="py function">
-<dt id="tests.test_pkg_1a.load_params">
-<code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">load_params</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#load_params"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.load_params" title="Permalink to this definition">¶</a></dt>
-<dd><p>Returns source path of images and number of exposures</p>
-</dd></dl>
-
-<dl class="py function">
 <dt id="tests.test_pkg_1a.test_data_checker_1">
 <code class="sig-prename descclassname">tests.test_pkg_1a.</code><code class="sig-name descname">test_data_checker_1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/test_pkg_1a.html#test_data_checker_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.test_pkg_1a.test_data_checker_1" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
@@ -339,6 +311,26 @@ Assumes img_file and ann_file follow naming conventions; see README.md</p>
 <dd></dd></dl>
 
 </div>
+<div class="section" id="module-tests.test_utils">
+<span id="tests-test-utils-module"></span><h2>tests.test_utils module<a class="headerlink" href="#module-tests.test_utils" title="Permalink to this headline">¶</a></h2>
+<p>Tests for pkg_1a.
+Assumes img_file and ann_file follow naming conventions; see README.md</p>
+</div>
+<div class="section" id="module-tests.testing_utils">
+<span id="tests-testing-utils-module"></span><h2>tests.testing_utils module<a class="headerlink" href="#module-tests.testing_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt id="tests.testing_utils.load_params_1">
+<code class="sig-prename descclassname">tests.testing_utils.</code><code class="sig-name descname">load_params_1</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/testing_utils.html#load_params_1"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.testing_utils.load_params_1" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns source path of images and number of exposures</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="tests.testing_utils.load_params_2">
+<code class="sig-prename descclassname">tests.testing_utils.</code><code class="sig-name descname">load_params_2</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/tests/testing_utils.html#load_params_2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#tests.testing_utils.load_params_2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns source path of images and number of exposures</p>
+</dd></dl>
+
+</div>
 <div class="section" id="module-tests">
 <span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-tests" title="Permalink to this headline">¶</a></h2>
 </div>
@@ -352,10 +344,8 @@ Assumes img_file and ann_file follow naming conventions; see README.md</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="train.html" class="btn btn-neutral float-right" title="train module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="sub_modules.html" class="btn btn-neutral float-left" title="sub_modules package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="src.sub_modules.html" class="btn btn-neutral float-left" title="src.sub_modules package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

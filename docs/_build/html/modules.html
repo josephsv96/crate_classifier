@@ -35,7 +35,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="augmentation module" href="augmentation.html" />
+    <link rel="next" title="src package" href="src.html" />
     <link rel="prev" title="Welcome to Crate Classifier’s documentation!" href="index.html" /> 
 </head>
 
@@ -84,31 +84,8 @@
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">crate_classifier</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model.html">model module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html">models package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="plotting.html">plotting module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="segmap.html">segmap module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sliding.html">sliding module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="statistics.html">statistics module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html">sub_modules package</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html">src package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
-<li class="toctree-l2"><a class="reference internal" href="train.html">train module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -180,54 +157,68 @@
 <h1>crate_classifier<a class="headerlink" href="#crate-classifier" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="augmentation.html">augmentation module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bb_to_npy.html">bb_to_npy module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="data_loader.html">data_loader module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="make_dataset.html">make_dataset module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model.html">model module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_v2.html">model_v2 module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_v3.html">model_v3 module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="model_v3_5k.html">model_v3_5k module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="models.html">models package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="models.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_14k">models.model_14k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_densenet21">models.model_densenet21 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_densenet21_35k">models.model_densenet21_35k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_densenet21_38k">models.model_densenet21_38k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_densenet21_48k">models.model_densenet21_48k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_densenet21_53k">models.model_densenet21_53k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_resnet18">models.model_resnet18 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_resnet18_34k">models.model_resnet18_34k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_resnet18_46k">models.model_resnet18_46k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_resnet18_58k">models.model_resnet18_58k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_resnet18_70k">models.model_resnet18_70k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16">models.model_vgg16 module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16_24k">models.model_vgg16_24k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16_34k">models.model_vgg16_34k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16_47k">models.model_vgg16_47k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16_51k">models.model_vgg16_51k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models.model_vgg16_64k">models.model_vgg16_64k module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="models.html#module-models">Module contents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="src.html">src package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="src.models.html">src.models package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_14k">src.models.model_14k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21">src.models.model_densenet21 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_35k">src.models.model_densenet21_35k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_38k">src.models.model_densenet21_38k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_48k">src.models.model_densenet21_48k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_densenet21_53k">src.models.model_densenet21_53k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18">src.models.model_resnet18 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_34k">src.models.model_resnet18_34k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_46k">src.models.model_resnet18_46k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_58k">src.models.model_resnet18_58k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_resnet18_70k">src.models.model_resnet18_70k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16">src.models.model_vgg16 module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_24k">src.models.model_vgg16_24k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_34k">src.models.model_vgg16_34k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_47k">src.models.model_vgg16_47k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_51k">src.models.model_vgg16_51k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models.model_vgg16_64k">src.models.model_vgg16_64k module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.models.html#module-src.models">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="pkg_1.html">pkg_1 module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="plotting.html">plotting module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="postprocessing.html">postprocessing module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocess_api_images.html">preprocess_api_images module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="preprocessing.html">preprocessing module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="rhs_frontend.html">rhs_frontend module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="segmap.html">segmap module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="segmap_v2.html">segmap_v2 module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sliding.html">sliding module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="statistics.html">statistics module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sub_modules.html">sub_modules package</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#submodules">Submodules</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#module-sub_modules.model_utils">sub_modules.model_utils module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#module-sub_modules.pkg_1a">sub_modules.pkg_1a module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#module-sub_modules.pkg_1b">sub_modules.pkg_1b module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#module-sub_modules.pkg_1c">sub_modules.pkg_1c module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="sub_modules.html#module-sub_modules">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.sub_modules.html">src.sub_modules package</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#submodules">Submodules</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#src-sub-modules-model-utils-module">src.sub_modules.model_utils module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1a">src.sub_modules.pkg_1a module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1b">src.sub_modules.pkg_1b module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules.pkg_1c">src.sub_modules.pkg_1c module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#src-sub-modules-pkg-2a-module">src.sub_modules.pkg_2a module</a></li>
+<li class="toctree-l4"><a class="reference internal" href="src.sub_modules.html#module-src.sub_modules">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.augmentation">src.augmentation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.bb_to_npy">src.bb_to_npy module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.data_loader">src.data_loader module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.fft">src.fft module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.make_dataset">src.make_dataset module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.model">src.model module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.model_v2">src.model_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.model_v3">src.model_v3 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.model_v3_5k">src.model_v3_5k module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.pkg_1">src.pkg_1 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#src-pkg-2-module">src.pkg_2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.plotting">src.plotting module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.postprocessing">src.postprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.preprocess_api_images">src.preprocess_api_images module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.preprocessing">src.preprocessing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#src-rhs-frontend-module">src.rhs_frontend module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.segmap">src.segmap module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.segmap_v2">src.segmap_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.sliding">src.sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.statistics">src.statistics module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#src-train-module">src.train module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#src-train-v2-module">src.train_v2 module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src.utils">src.utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tests.html">tests package</a><ul>
@@ -236,12 +227,11 @@
 <li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.test_models">tests.test_models module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.test_pkg_1a">tests.test_pkg_1a module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.test_sliding">tests.test_sliding module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.test_utils">tests.test_utils module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests.testing_utils">tests.testing_utils module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests.html#module-tests">Module contents</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="train.html">train module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="train_v2.html">train_v2 module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
 </div>
 </div>
@@ -254,7 +244,7 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="augmentation.html" class="btn btn-neutral float-right" title="augmentation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="src.html" class="btn btn-neutral float-right" title="src package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="index.html" class="btn btn-neutral float-left" title="Welcome to Crate Classifier’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

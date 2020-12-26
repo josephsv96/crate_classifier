@@ -1,0 +1,299 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src.fft &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../modules.html">crate_classifier</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../index.html">Module code</a> &raquo;</li>
+        
+      <li>src.fft</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for src.fft</h1><div class="highlight"><pre>
+<span></span><span class="sd">&quot;&quot;&quot;FFT of individual crate classes using sliding window</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="c1"># Local Modules</span>
+<span class="kn">from</span> <span class="nn">src.data_loader</span> <span class="kn">import</span> <span class="n">load_npy</span>
+<span class="kn">from</span> <span class="nn">src.utils</span> <span class="kn">import</span> <span class="n">load_json</span><span class="p">,</span> <span class="n">bgr_to_rgb_img</span>
+<span class="kn">from</span> <span class="nn">src.sliding</span> <span class="kn">import</span> <span class="n">SlidingWindow</span>
+<span class="kn">from</span> <span class="nn">src.segmap_v2</span> <span class="kn">import</span> <span class="n">SegmentaionMap</span>
+
+<span class="c1"># Testing Sliding window splitting</span>
+
+
+<div class="viewcode-block" id="sort_img_arr_by_class"><a class="viewcode-back" href="../../src.html#src.fft.sort_img_arr_by_class">[docs]</a><span class="k">def</span> <span class="nf">sort_img_arr_by_class</span><span class="p">(</span><span class="n">ann_arr</span><span class="p">,</span> <span class="n">PARAMS</span><span class="p">):</span>
+    <span class="n">sector_name</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sec_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ann_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    <span class="n">sec_db</span> <span class="o">=</span> <span class="p">{</span><span class="n">class_name</span><span class="p">:</span> <span class="p">[]</span> <span class="k">for</span> <span class="n">class_name</span> <span class="ow">in</span> <span class="n">sector_name</span><span class="p">}</span>
+
+    <span class="n">img_id</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">ann_arr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+        <span class="n">annot</span> <span class="o">=</span> <span class="n">ann_arr</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+        <span class="n">segmap_obj</span> <span class="o">=</span> <span class="n">SegmentaionMap</span><span class="p">(</span><span class="n">annot</span><span class="p">,</span>
+                                    <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;num_classes&quot;</span><span class="p">],</span>
+                                    <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;bg_class_id&quot;</span><span class="p">])</span>
+        <span class="c1"># fg_cls / activated_px, bg_cls/ total_px</span>
+        <span class="n">cls_den_arr</span> <span class="o">=</span> <span class="n">segmap_obj</span><span class="o">.</span><span class="n">activation_density</span><span class="p">()</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">detected_cls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">where</span><span class="p">(</span><span class="n">cls_den_arr</span> <span class="o">&gt;</span> <span class="n">PARAMS</span><span class="p">[</span><span class="s2">&quot;det_thres&quot;</span><span class="p">])[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">IndexError</span><span class="p">:</span>
+            <span class="c1"># Pushing images with less than threshold to or first id or last id</span>
+            <span class="n">detected_cls</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="n">sec_db</span><span class="p">[</span><span class="sa">f</span><span class="s2">&quot;sec_</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">detected_cls</span>
+
+    <span class="k">return</span> <span class="n">sec_db</span></div>
+
+
+<div class="viewcode-block" id="main"><a class="viewcode-back" href="../../src.html#src.fft.main">[docs]</a><span class="k">def</span> <span class="nf">main</span><span class="p">():</span>
+    <span class="n">DATASET_PATH</span> <span class="o">=</span> <span class="n">Path</span><span class="p">(</span><span class="s2">&quot;outputs/images_augmented&quot;</span><span class="p">)</span>
+    <span class="c1"># DATASET_PATH = Path(&quot;C:/Users/josep/Documents/work/crate_classifier_dev/outputs/img_3_sample_valid_centered_small&quot;)</span>
+
+    <span class="n">PKG_1_PARAMS</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;pkg_1_config.json&quot;</span><span class="p">)</span>
+
+    <span class="n">img_arr</span> <span class="o">=</span> <span class="n">load_npy</span><span class="p">(</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="s2">&quot;dataset_images_aug.npy&quot;</span><span class="p">)</span> <span class="o">/</span> <span class="mi">255</span>
+    <span class="n">ann_arr</span> <span class="o">=</span> <span class="n">load_npy</span><span class="p">(</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="s2">&quot;dataset_annots_aug.npy&quot;</span><span class="p">)</span>
+
+    <span class="n">index</span> <span class="o">=</span> <span class="mi">5</span>
+
+    <span class="c1"># plt.figure(figsize=(10, 8))</span>
+    <span class="c1"># plt.subplot(1, 2, 1)</span>
+    <span class="c1"># plt.imshow(bgr_to_rgb_img(img_arr[index, :, :, 3:6]))</span>
+    <span class="c1"># plt.xticks([])</span>
+    <span class="c1"># plt.yticks([])</span>
+
+    <span class="c1"># plt.subplot(1, 2, 2)</span>
+    <span class="c1"># plt.imshow(ann_arr[index, :, :, 0])</span>
+    <span class="c1"># plt.clim([0, 10])</span>
+    <span class="c1"># plt.xticks([])</span>
+    <span class="c1"># plt.yticks([])</span>
+
+    <span class="c1"># plt.tight_layout()</span>
+    <span class="c1"># plt.show()</span>
+
+    <span class="n">sample_ann</span> <span class="o">=</span> <span class="n">ann_arr</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="p">:]</span>
+    <span class="n">my_scale</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span><span class="n">sample_ann</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="n">my_scale</span><span class="p">,</span>
+                                <span class="n">PARAMS</span><span class="o">=</span><span class="n">PKG_1_PARAMS</span><span class="p">)</span>
+
+    <span class="c1"># sliding_obj.show_slices(num_class=10)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;annot_arr.shape: </span><span class="si">{</span><span class="n">sample_ann</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;N_dim: </span><span class="si">{</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">N_dim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;w_dim: </span><span class="si">{</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">w_dim</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;w_stride: </span><span class="si">{</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">w_stride</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;sliced_arr.shape: </span><span class="si">{</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">sliced_arr</span><span class="o">.</span><span class="n">shape</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+    <span class="n">sliced</span> <span class="o">=</span> <span class="n">sliding_obj</span><span class="o">.</span><span class="n">sliced_arr</span>
+    <span class="n">ind</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">sliced</span><span class="p">[</span><span class="n">ind</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">])</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+    <span class="n">annot_db</span> <span class="o">=</span> <span class="n">sort_img_arr_by_class</span><span class="p">(</span><span class="n">sliced</span><span class="p">,</span> <span class="n">PKG_1_PARAMS</span><span class="p">)</span>
+
+    <span class="n">sliding_obj</span><span class="o">.</span><span class="n">show_slices_overlay</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
+
+    <span class="n">sliding_obj</span><span class="o">.</span><span class="n">image_overlay</span><span class="p">(</span><span class="n">img_arr</span><span class="p">[</span><span class="n">index</span><span class="p">,</span> <span class="p">:,</span> <span class="p">:,</span> <span class="mi">3</span><span class="p">:</span><span class="mi">6</span><span class="p">])</span>
+
+    <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">sort_img_arr_by_class</span><span class="p">())</span>
+    <span class="p">[</span><span class="n">markdown</span><span class="p">]</span>
+    <span class="c1"># ## Sample out of Network</span>
+
+    <span class="n">sample_img</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="s2">&quot;output_img.npy&quot;</span><span class="p">)</span>
+    <span class="n">sample_ann</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">DATASET_PATH</span> <span class="o">/</span> <span class="s2">&quot;output_ann.npy&quot;</span><span class="p">)</span>
+
+    <span class="n">my_scale</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span>
+        <span class="n">sample_ann</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="n">my_scale</span><span class="p">,</span> <span class="n">PARAMS</span><span class="o">=</span><span class="n">PKG_1_PARAMS</span><span class="p">)</span>
+
+    <span class="n">sliding_obj</span><span class="o">.</span><span class="n">show_slices</span><span class="p">(</span><span class="n">num_class</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

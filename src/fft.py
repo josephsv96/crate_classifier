@@ -5,15 +5,12 @@ import numpy as np
 import matplotlib.pyplot as plt
 from pathlib import Path
 
-from data_loader import load_npy
-from utilities import load_json, bgr_to_rgb_img
-from segmap_v2 import SegmentaionMap
 
 # Local Modules
-
-
-from sliding import SlidingWindow
-import segmap_v2
+from src.data_loader import load_npy
+from src.utils import load_json, bgr_to_rgb_img
+from src.sliding import SlidingWindow
+from src.segmap_v2 import SegmentaionMap
 
 # Testing Sliding window splitting
 

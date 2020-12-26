@@ -1,12 +1,12 @@
 from pathlib import Path
 
 # Local Modules
-from sub_modules import pkg_1a
-from sub_modules import pkg_1b
-from augmentation import Augmenter
-from utils import load_json
-from utils import save_npy_v2
-from utils import get_timestamp
+from src.sub_modules import pkg_1a
+from src.sub_modules import pkg_1b
+from src.augmentation import Augmenter
+from src.utils import load_json
+from src.utils import save_npy_v2
+from src.utils import get_timestamp
 # from uitls import get_custom_cmap
 # from preprocessing import get_dataset
 

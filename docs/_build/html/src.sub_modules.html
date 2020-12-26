@@ -1,0 +1,383 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>src.sub_modules package &mdash; Crate Classifier 0.0.1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="tests package" href="tests.html" />
+    <link rel="prev" title="src.models package" href="src.models.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Crate Classifier
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">crate_classifier</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="src.html">src package</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="src.html#subpackages">Subpackages</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="src.models.html">src.models package</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">src.sub_modules package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.augmentation">src.augmentation module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.bb_to_npy">src.bb_to_npy module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.data_loader">src.data_loader module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.fft">src.fft module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.main">src.main module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.make_dataset">src.make_dataset module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.model">src.model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.model_v2">src.model_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.model_v3">src.model_v3 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.model_v3_5k">src.model_v3_5k module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.pkg_1">src.pkg_1 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#src-pkg-2-module">src.pkg_2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.plotting">src.plotting module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.postprocessing">src.postprocessing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.preprocess_api_images">src.preprocess_api_images module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.preprocessing">src.preprocessing module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#src-rhs-frontend-module">src.rhs_frontend module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.segmap">src.segmap module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.segmap_v2">src.segmap_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.sliding">src.sliding module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.statistics">src.statistics module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#src-train-module">src.train module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#src-train-v2-module">src.train_v2 module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src.utils">src.utils module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="src.html#module-src">Module contents</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tests.html">tests package</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Crate Classifier</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="modules.html">crate_classifier</a> &raquo;</li>
+        
+          <li><a href="src.html">src package</a> &raquo;</li>
+        
+      <li>src.sub_modules package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/src.sub_modules.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="src-sub-modules-package">
+<h1>src.sub_modules package<a class="headerlink" href="#src-sub-modules-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="src-sub-modules-model-utils-module">
+<h2>src.sub_modules.model_utils module<a class="headerlink" href="#src-sub-modules-model-utils-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.sub_modules.pkg_1a">
+<span id="src-sub-modules-pkg-1a-module"></span><h2>src.sub_modules.pkg_1a module<a class="headerlink" href="#module-src.sub_modules.pkg_1a" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.sub_modules.pkg_1a.DataChecker">
+<em class="property">class </em><code class="sig-prename descclassname">src.sub_modules.pkg_1a.</code><code class="sig-name descname">DataChecker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_dir</span></em>, <em class="sig-param"><span class="n">num_exp</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1a.html#DataChecker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1a.DataChecker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1a.DataChecker.data_checker">
+<em class="property">static </em><code class="sig-name descname">data_checker</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">src_dir</span></em>, <em class="sig-param"><span class="n">num_exp</span></em>, <em class="sig-param"><span class="n">img_ext</span><span class="o">=</span><span class="default_value">'.bmp'</span></em>, <em class="sig-param"><span class="n">ann_ext</span><span class="o">=</span><span class="default_value">'.cmp'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1a.html#DataChecker.data_checker"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1a.DataChecker.data_checker" title="Permalink to this definition">¶</a></dt>
+<dd><p>Checks if there are missing annotation files in the source folder.
+Return pathlib.Path files for images and annotations</p>
+<p>WARNING!! DOES NOT CHECK IF ANNOTATIONS ARE CORRECT (by name)
+ADD CROSS VALIDATION</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_dir</strong> (<em>str</em>) – Source path</p></li>
+<li><p><strong>num_exp</strong> (<em>int</em>) – Number of exposures of the images</p></li>
+<li><p><strong>img_ext</strong> (<em>str</em><em>, </em><em>optional</em>) – Image File Extension. Defaults to “.bmp”.</p></li>
+<li><p><strong>ann_ext</strong> (<em>str</em><em>, </em><em>optional</em>) – Annotation File Extension. Defaults to
+“.cmp”.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>Valid image file paths
+list: Valid annotation file paths</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>list</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1a.DataChecker.logging">
+<code class="sig-name descname">logging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1a.html#DataChecker.logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1a.DataChecker.logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging for pkg_1a</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.sub_modules.pkg_1a.main">
+<code class="sig-prename descclassname">src.sub_modules.pkg_1a.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1a.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1a.main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-src.sub_modules.pkg_1b">
+<span id="src-sub-modules-pkg-1b-module"></span><h2>src.sub_modules.pkg_1b module<a class="headerlink" href="#module-src.sub_modules.pkg_1b" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.sub_modules.pkg_1b.DataSorter">
+<em class="property">class </em><code class="sig-prename descclassname">src.sub_modules.pkg_1b.</code><code class="sig-name descname">DataSorter</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_paths</span></em>, <em class="sig-param"><span class="n">ann_paths</span></em>, <em class="sig-param"><span class="n">PKG_1_PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1b.html#DataSorter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1b.DataSorter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1b.DataSorter.logging">
+<code class="sig-name descname">logging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1b.html#DataSorter.logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1b.DataSorter.logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging for pkg_1b</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1b.DataSorter.sort_by_class">
+<em class="property">static </em><code class="sig-name descname">sort_by_class</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">img_paths</span></em>, <em class="sig-param"><span class="n">ann_paths</span></em>, <em class="sig-param"><span class="n">PKG_1_PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1b.html#DataSorter.sort_by_class"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1b.DataSorter.sort_by_class" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return sorted dicts of each class by pixel density sorting</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.sub_modules.pkg_1b.main">
+<code class="sig-prename descclassname">src.sub_modules.pkg_1b.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1b.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1b.main" title="Permalink to this definition">¶</a></dt>
+<dd><p># pkg_1a
+img_paths, ann_paths = pkg_1a.main(PKG_1_PARAMS)
+# pkg_1b
+image_db, annot_db = sort_by_class(img_paths, ann_paths, PKG_1_PARAMS)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-src.sub_modules.pkg_1c">
+<span id="src-sub-modules-pkg-1c-module"></span><h2>src.sub_modules.pkg_1c module<a class="headerlink" href="#module-src.sub_modules.pkg_1c" title="Permalink to this headline">¶</a></h2>
+<dl class="py class">
+<dt id="src.sub_modules.pkg_1c.AugDataGenerator">
+<em class="property">class </em><code class="sig-prename descclassname">src.sub_modules.pkg_1c.</code><code class="sig-name descname">AugDataGenerator</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_db</span></em>, <em class="sig-param"><span class="n">annot_db</span></em>, <em class="sig-param"><span class="n">PARAMS</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1c.html#AugDataGenerator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1c.AugDataGenerator" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1c.AugDataGenerator.gen_aug_data">
+<em class="property">static </em><code class="sig-name descname">gen_aug_data</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">image_db</span></em>, <em class="sig-param"><span class="n">annot_db</span></em>, <em class="sig-param"><span class="n">PARAMS</span></em>, <em class="sig-param"><span class="n">output_dir</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1c.html#AugDataGenerator.gen_aug_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1c.AugDataGenerator.gen_aug_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1c.AugDataGenerator.logging">
+<code class="sig-name descname">logging</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1c.html#AugDataGenerator.logging"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1c.AugDataGenerator.logging" title="Permalink to this definition">¶</a></dt>
+<dd><p>Logging for pkg_1c</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="src.sub_modules.pkg_1c.AugDataGenerator.mkdir_dataset">
+<em class="property">static </em><code class="sig-name descname">mkdir_dataset</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">output_dir</span><span class="o">=</span><span class="default_value">'pkg_1_output'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1c.html#AugDataGenerator.mkdir_dataset"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1c.AugDataGenerator.mkdir_dataset" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create output directory with subfolders</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>output_dir</strong> (<em>str</em><em>, </em><em>optional</em>) – Output directory. Defaults to
+“pkg_1_output”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt id="src.sub_modules.pkg_1c.main">
+<code class="sig-prename descclassname">src.sub_modules.pkg_1c.</code><code class="sig-name descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/src/sub_modules/pkg_1c.html#main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#src.sub_modules.pkg_1c.main" title="Permalink to this definition">¶</a></dt>
+<dd><p># pkg_1a
+img_paths, ann_paths = pkg_1a.main(PKG_1_PARAMS)
+# pkg_1b
+image_db, annot_db = sort_by_class(img_paths, ann_paths, PKG_1_PARAMS)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="src-sub-modules-pkg-2a-module">
+<h2>src.sub_modules.pkg_2a module<a class="headerlink" href="#src-sub-modules-pkg-2a-module" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-src.sub_modules">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-src.sub_modules" title="Permalink to this headline">¶</a></h2>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="tests.html" class="btn btn-neutral float-right" title="tests package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="src.models.html" class="btn btn-neutral float-left" title="src.models package" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2020, Joseph Sebastian Valiyaveettil
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

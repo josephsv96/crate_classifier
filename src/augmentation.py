@@ -6,11 +6,11 @@ from tqdm import tqdm
 import cv2
 
 # Local Modules
-from utils import create_output_folder
-from utils import save_npy_v2
-from utils import read_cmp
-from utils import write_cmp
-from utils import get_timestamp
+from src.utils import create_output_folder
+from src.utils import save_npy_v2
+from src.utils import read_cmp
+from src.utils import write_cmp
+from src.utils import get_timestamp
 
 
 class Augmenter:

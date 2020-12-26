@@ -149,8 +149,8 @@
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 <span class="k">try</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sliding</span> <span class="kn">import</span> <span class="n">SlidingWindow</span>
-    <span class="kn">from</span> <span class="nn">utils</span> <span class="kn">import</span> <span class="n">load_json</span>
+    <span class="kn">from</span> <span class="nn">tests.testing_utils</span> <span class="kn">import</span> <span class="n">load_params_1</span>
+    <span class="kn">from</span> <span class="nn">src.sliding</span> <span class="kn">import</span> <span class="n">SlidingWindow</span>
 
 <span class="k">except</span> <span class="ne">ImportError</span> <span class="k">as</span> <span class="n">error</span><span class="p">:</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error: </span><span class="si">{</span><span class="n">error</span><span class="si">}</span><span class="s2">; Local modules not found&quot;</span><span class="p">)</span>
@@ -162,14 +162,14 @@
 
 <div class="viewcode-block" id="img_init"><a class="viewcode-back" href="../../tests.html#tests.test_sliding.img_init">[docs]</a><span class="k">def</span> <span class="nf">img_init</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">depth</span><span class="p">):</span>
     <span class="n">img_arr</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">depth</span><span class="p">))</span>
-    <span class="n">PKG_1_PARAMS</span> <span class="o">=</span> <span class="n">load_json</span><span class="p">(</span><span class="s2">&quot;pkg_1_config.json&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">img_arr</span><span class="p">,</span> <span class="n">PKG_1_PARAMS</span></div>
+    <span class="k">return</span> <span class="n">img_arr</span></div>
 
 <span class="c1"># Tests</span>
 
 
 <div class="viewcode-block" id="test_model_1"><a class="viewcode-back" href="../../tests.html#tests.test_sliding.test_model_1">[docs]</a><span class="k">def</span> <span class="nf">test_model_1</span><span class="p">():</span>
-    <span class="n">img_arr</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">load_params_1</span><span class="p">()</span>
+    <span class="n">img_arr</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span><span class="n">img_arr</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">PARAMS</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">assert</span><span class="p">(</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">==</span> <span class="mi">128</span><span class="p">)</span>
@@ -179,7 +179,8 @@
 
 
 <div class="viewcode-block" id="test_model_2"><a class="viewcode-back" href="../../tests.html#tests.test_sliding.test_model_2">[docs]</a><span class="k">def</span> <span class="nf">test_model_2</span><span class="p">():</span>
-    <span class="n">img_arr</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">load_params_1</span><span class="p">()</span>
+    <span class="n">img_arr</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
     <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span><span class="n">img_arr</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">PARAMS</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">assert</span><span class="p">(</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">==</span> <span class="mi">128</span><span class="p">)</span>
@@ -189,7 +190,8 @@
 
 
 <div class="viewcode-block" id="test_model_3"><a class="viewcode-back" href="../../tests.html#tests.test_sliding.test_model_3">[docs]</a><span class="k">def</span> <span class="nf">test_model_3</span><span class="p">():</span>
-    <span class="n">img_arr</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">load_params_1</span><span class="p">()</span>
+    <span class="n">img_arr</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span><span class="n">img_arr</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">PARAMS</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">assert</span><span class="p">(</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">==</span> <span class="mi">128</span><span class="p">)</span>
@@ -199,7 +201,8 @@
 
 
 <div class="viewcode-block" id="test_model_4"><a class="viewcode-back" href="../../tests.html#tests.test_sliding.test_model_4">[docs]</a><span class="k">def</span> <span class="nf">test_model_4</span><span class="p">():</span>
-    <span class="n">img_arr</span><span class="p">,</span> <span class="n">params</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="n">params</span> <span class="o">=</span> <span class="n">load_params_1</span><span class="p">()</span>
+    <span class="n">img_arr</span> <span class="o">=</span> <span class="n">img_init</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">128</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
     <span class="n">sliding_obj</span> <span class="o">=</span> <span class="n">SlidingWindow</span><span class="p">(</span><span class="n">img_arr</span><span class="p">,</span> <span class="n">w_scale</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">PARAMS</span><span class="o">=</span><span class="n">params</span><span class="p">)</span>
 
     <span class="k">assert</span><span class="p">(</span><span class="n">sliding_obj</span><span class="o">.</span><span class="n">N_dim</span> <span class="o">==</span> <span class="mi">128</span><span class="p">)</span>

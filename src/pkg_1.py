@@ -1,9 +1,9 @@
 # Local Modules
-from sub_modules import pkg_1a
-from sub_modules import pkg_1b
-from sub_modules import pkg_1c
-import statistics
-from utils import load_json
+from src.sub_modules import pkg_1a
+from src.sub_modules import pkg_1b
+from src.sub_modules import pkg_1c
+import src.statistics
+from src.utils import load_json
 
 
 def main():
