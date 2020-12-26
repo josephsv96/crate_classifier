@@ -4,8 +4,9 @@ Assumes img_file and ann_file follow naming conventions; see README.md
 from pathlib import Path
 
 try:
-    from sub_modules.pkg_1a import DataChecker
-    from utils import load_json
+    from tests.testing_utils import load_params_1
+    from src.sub_modules.pkg_1a import DataChecker
+
 
 except ImportError as error:
     print(f"Error: {error}; Local modules not found")
@@ -13,14 +14,6 @@ except Exception as exception:
     print(exception)
 
 # Helper Functions
-
-
-def load_params():
-    """Returns source path of images and number of exposures
-    """
-    PKG_1_PARAMS = load_json("pkg_1_config.json")
-
-    return PKG_1_PARAMS
 
 
 def chk_dir(src_dir):
@@ -38,7 +31,7 @@ def chk_dir(src_dir):
 
 
 def test_data_checker_1():
-    PARAMS = load_params()
+    PARAMS = load_params_1()
     src_dir, num_exp = PARAMS["src_dir"], PARAMS["num_exp"]
 
     assert(chk_dir(src_dir) is True)
@@ -52,7 +45,7 @@ def test_data_checker_1():
 
 
 def test_data_checker_2():
-    PARAMS = load_params()
+    PARAMS = load_params_1()
     src_dir, num_exp = PARAMS["src_dir"], PARAMS["num_exp"]
 
     assert(chk_dir(src_dir) is True)

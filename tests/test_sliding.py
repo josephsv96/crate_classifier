@@ -1,8 +1,8 @@
 import numpy as np
 
 try:
-    from sliding import SlidingWindow
-    from utils import load_json
+    from tests.testing_utils import load_params_1
+    from src.sliding import SlidingWindow
 
 except ImportError as error:
     print(f"Error: {error}; Local modules not found")
@@ -14,14 +14,14 @@ except Exception as exception:
 
 def img_init(h, w, depth):
     img_arr = np.zeros((h, w, depth))
-    PKG_1_PARAMS = load_json("pkg_1_config.json")
-    return img_arr, PKG_1_PARAMS
+    return img_arr
 
 # Tests
 
 
 def test_model_1():
-    img_arr, params = img_init(128, 128, 1)
+    params = load_params_1()
+    img_arr = img_init(128, 128, 1)
     sliding_obj = SlidingWindow(img_arr, w_scale=2, PARAMS=params)
 
     assert(sliding_obj.N_dim == 128)
@@ -31,7 +31,8 @@ def test_model_1():
 
 
 def test_model_2():
-    img_arr, params = img_init(128, 128, 1)
+    params = load_params_1()
+    img_arr = img_init(128, 128, 1)
     sliding_obj = SlidingWindow(img_arr, w_scale=3, PARAMS=params)
 
     assert(sliding_obj.N_dim == 128)
@@ -41,7 +42,8 @@ def test_model_2():
 
 
 def test_model_3():
-    img_arr, params = img_init(128, 128, 3)
+    params = load_params_1()
+    img_arr = img_init(128, 128, 3)
     sliding_obj = SlidingWindow(img_arr, w_scale=4, PARAMS=params)
 
     assert(sliding_obj.N_dim == 128)
@@ -51,7 +53,8 @@ def test_model_3():
 
 
 def test_model_4():
-    img_arr, params = img_init(128, 128, 3)
+    params = load_params_1()
+    img_arr = img_init(128, 128, 3)
     sliding_obj = SlidingWindow(img_arr, w_scale=5, PARAMS=params)
 
     assert(sliding_obj.N_dim == 128)

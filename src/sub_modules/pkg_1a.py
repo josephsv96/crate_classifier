@@ -2,7 +2,7 @@ import numpy as np
 from pathlib import Path
 
 # Local Modules
-from utils import load_json, rm_duplicate
+from src.utils import load_json, rm_duplicate
 
 
 class DataChecker:

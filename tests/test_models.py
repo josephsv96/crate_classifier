@@ -2,23 +2,23 @@
 Assumes img_file and ann_file follow naming conventions; see README.md
 """
 try:
-    from models import model_14k
-    from models import model_densenet21
-    from models import model_densenet21_35k
-    from models import model_densenet21_38k
-    from models import model_densenet21_48k
-    from models import model_densenet21_53k
-    from models import model_resnet18
-    from models import model_resnet18_34k
-    from models import model_resnet18_46k
-    from models import model_resnet18_58k
-    from models import model_resnet18_70k
-    from models import model_vgg16
-    from models import model_vgg16_24k
-    from models import model_vgg16_34k
-    from models import model_vgg16_47k
-    from models import model_vgg16_51k
-    from models import model_vgg16_64k
+    from src.models import model_14k
+    from src.models import model_densenet21
+    from src.models import model_densenet21_35k
+    from src.models import model_densenet21_38k
+    from src.models import model_densenet21_48k
+    from src.models import model_densenet21_53k
+    from src.models import model_resnet18
+    from src.models import model_resnet18_34k
+    from src.models import model_resnet18_46k
+    from src.models import model_resnet18_58k
+    from src.models import model_resnet18_70k
+    from src.models import model_vgg16
+    from src.models import model_vgg16_24k
+    from src.models import model_vgg16_34k
+    from src.models import model_vgg16_47k
+    from src.models import model_vgg16_51k
+    from src.models import model_vgg16_64k
 
 except ImportError as error:
     print(f"Error: {error}; Local modules not found")

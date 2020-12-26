@@ -1,8 +1,8 @@
 import numpy as np
 import matplotlib.pyplot as plt
 
-from segmap_v2 import SegmentaionMap
-from utils import get_custom_cmap, bgr_to_rgb_img
+from src.segmap_v2 import SegmentaionMap
+from src.utils import get_custom_cmap, bgr_to_rgb_img
 
 
 class SlidingWindow:

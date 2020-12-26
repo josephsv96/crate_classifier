@@ -4,6 +4,7 @@
 __pycache__/
 annot_backup/
 dataset/
+data/
 images/
 outputs/
 output_/
